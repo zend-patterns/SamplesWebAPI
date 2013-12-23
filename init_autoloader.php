@@ -16,26 +16,15 @@
  * most users, however, feel free to configure autoloading however you'd like.
  */
 
-// Composer autoloading
-if (file_exists('vendor/autoload.php')) {
-    $loader = include 'vendor/autoload.php';
-}
-
 $zf2Path = zend_deployment_library_path('Zend Framework 2');
 
-if ($zf2Path) {
-    if (isset($loader)) {
-        $loader->add('Zend', $zf2Path);
-    } else {
+if (! $zf2Path) {
+    throw new RuntimeException('Unable to load ZF2. This package must be deployed on a Zend Server with Zend Framework 2');
+}
+
         include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
         Zend\Loader\AutoloaderFactory::factory(array(
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true
             )
         ));
-    }
-}
-
-if (!class_exists('Zend\Loader\AutoloaderFactory')) {
-    throw new RuntimeException('Unable to load ZF2. Run `php composer.phar install` or define a ZF2_PATH environment variable.');
-}
