@@ -1,0 +1,13 @@
+<div>
+	<h2><?php echo $this->translate('Signing a WebAPI request') // TRANSLATE ?></h2>
+	<p><?php echo $this->translate('Every WebAPI request sent to a launched Zend Server must be accompanied by a signature to authenticate its origin, pass permissions\' check and to verify its contents.
+									The signature is a sha256 hmac keyed by the shared secret WebAPI key. This key is provided by Zend Server after bootstrap or can be created in the UI.') // TRANSLATE ?></p>
+	<h3><?php echo $this->translate('Header values') // TRANSLATE ?></h3>
+		<ul class="">
+			<li><?php echo $this->translate() // TRANSLATE ?></li>
+		</ul>
+	<h3><?php echo $this->translate('WebAPI Key') // TRANSLATE ?></h3>
+	<h3><?php echo $this->translate('Produced Hash') // TRANSLATE ?></h3>
+	<h3><?php echo $this->translate('Signed Hash') // TRANSLATE ?></h3>
+	<h3><?php echo $this->translate('HTTP heade') // TRANSLATE ?>r</h3>
+</div>
