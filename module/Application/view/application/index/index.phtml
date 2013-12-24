@@ -1,7 +1,8 @@
 <div class="jumbotron">
-    <h1><?php echo sprintf($this->translate('Welcome to Zend Server\'s %sWebAPI Samples%s'), '<span class="zf-green">', '</span>') ?></h1>
-    <p><?php echo sprintf($this->translate('Congratulations! You have successfully installed the %sZend Server WebAPI samples%s application. This samples application is here to give you a few examples of what can be done with the WebAPI and how we thought you could use it.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank">', '</a>') ?></p>
-    <p><a class="btn btn-success btn-lg" href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank"><?php echo $this->translate('Check our documentation for more information') ?> &raquo;</a></p>
+    <h1><?php echo sprintf($this->translate('Welcome to Zend Server\'s %sWebAPI Samples%s'), '<span class="zf-green">', '</span>') // TRANSLATE ?></h1>
+    <p><?php echo sprintf($this->translate('Congratulations! You have successfully installed the %sZend Server WebAPI samples%s application.
+    		This application provides you a few examples of what can be done with the WebAPI and how we thought you could use the WebAPI.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank">', '</a>') // TRANSLATE ?></p>
+    <p><a class="btn btn-success btn-lg" href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank"><?php echo $this->translate('Check our documentation for more information') // TRANSLATE ?> &raquo;</a></p>
 </div>
 
 - WebAPI samples by workflow and complexity
@@ -26,11 +27,33 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('The Basics') ?></h3>
+                <h3 class="panel-title"><?php echo $this->translate('The Basics') // TRANSLATE ?></h3>
             </div>
             <div class="panel-body">
-                <p><?php echo sprintf($this->translate('Zend Framework 2 is under active development. If you are interested in following the development of ZF2, there is a special ZF2 portal on the official Zend Framework website which provides links to the ZF2 %swiki%s, %sdev blog%s, %sissue tracker%s, and much more. This is a great resource for staying up to date with the latest developments!'), '<a href="http://framework.zend.com/wiki/display/ZFDEV2/Home">', '</a>', '<a href="http://framework.zend.com/zf2/blog">', '</a>', '<a href="https://github.com/zendframework/zf2/issues">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="http://framework.zend.com/zf2" target="_blank"><?php echo $this->translate('ZF2 Development Portal') ?> &raquo;</a></p>
+                <p class="description"><?php echo sprintf($this->translate('These are code examples and explanations of the basic building blocks of using the WebAPI. These examples do not actually do anything in of themselves, instead they show you the first steps on the road to automation')) // TRANSLATE ?></p>
+            	<ul class="list-unstyled list-group">
+            		<li class="list-group-item">
+            			<a class="" href=""><?php echo $this->translate('Signatures') // TRANSLATE ?></a>
+            			<div class="pull-right">
+	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#signing_api_requests.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+            			</div>
+            		</li>
+            		<li class="list-group-item">
+            			<a href=""><?php echo $this->translate('Accept header & version') // TRANSLATE ?></a>
+	            		<div class="pull-right">
+	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#api_versioning_negotation.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+	            		</div>
+            		</li>
+            		<li class="list-group-item">
+            			<a href=""><?php echo $this->translate('Error standard output') // TRANSLATE ?></a>
+            			<div class="pull-right">
+	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#response_format.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+            			</div>
+            		</li>
+            	</ul>
             </div>
         </div>
     </div>
@@ -38,11 +61,33 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Simple Workflows') ?></h3>
+                <h3 class="panel-title"><?php echo $this->translate('Simple Workflows') // TRANSLATE ?></h3>
             </div>
             <div class="panel-body">
-                <p><?php echo sprintf($this->translate('The community is working on developing a community site to serve as a repository and gallery for ZF2 modules. The project is available %son GitHub%s. The site is currently live and currently contains a list of some of the modules already available for ZF2.'), '<a href="https://github.com/zendframework/modules.zendframework.com">', '</a>') ?></p>
-                <p><a class="btn btn-success pull-right" href="http://modules.zendframework.com/" target="_blank"><?php echo $this->translate('Explore ZF2 Modules') ?> &raquo;</a></p>
+                <p class="description"><?php echo $this->translate('These code examples show some simple, one step workflows that can be used for retrieving information from Zend Server') // TRANSLATE ?></p>
+                <ul class="list-unstyled list-group">
+            		<li class="list-group-item">
+            			<a class="" href=""><?php echo $this->translate('Signatures') // TRANSLATE ?></a>
+            			<div class="pull-right">
+	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#signing_api_requests.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+            			</div>
+            		</li>
+            		<li class="list-group-item">
+            			<a href=""><?php echo $this->translate('Accept header & version') // TRANSLATE ?></a>
+	            		<div class="pull-right">
+	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#api_versioning_negotation.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+	            		</div>
+            		</li>
+            		<li class="list-group-item">
+            			<a href=""><?php echo $this->translate('Error standard output') // TRANSLATE ?></a>
+            			<div class="pull-right">
+	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#response_format.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+            			</div>
+            		</li>
+            	</ul>
             </div>
         </div>
     </div>
