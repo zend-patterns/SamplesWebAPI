@@ -1,13 +1,29 @@
-<div>
+<div id="siganture-panel" class="panel panel-body">
 	<h2><?php echo $this->translate('Signing a WebAPI request') // TRANSLATE ?></h2>
-	<p><?php echo $this->translate('Every WebAPI request sent to a launched Zend Server must be accompanied by a signature to authenticate its origin, pass permissions\' check and to verify its contents.
-									The signature is a sha256 hmac keyed by the shared secret WebAPI key. This key is provided by Zend Server after bootstrap or can be created in the UI.') // TRANSLATE ?></p>
-	<h3><?php echo $this->translate('Header values') // TRANSLATE ?></h3>
-		<ul class="">
-			<li><?php echo $this->translate() // TRANSLATE ?></li>
+	<p><?php echo $this->translate('Every WebAPI request sent to a launched Zend Server must be accompanied by a signature to authenticate its origin, pass permissions\' check and to verify its contents. The signature is a sha256 hmac keyed by the shared secret WebAPI key. This key is provided by Zend Server after bootstrap or can be created in the UI.') // TRANSLATE ?></p>
+
+	<h3><?php echo $this->translate('Signature hash values') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('The WebAPI signature encrypts a hash made out of a few headers and parts of the WebAPI action URL that will be called.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('The Date header must be current - a signature will expire after 5 minutes of its creation and will not be usable.') // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('The WebAPI URL we will request: %shttp://127.0.0.1:10081/ZendServer/Api/getSystemInfo%s'), '<samp>', '</samp>') // TRANSLATE ?></p>
+		<ul>
+			<li><?php echo $this->translate('Date:') // TRANSLATE ?> <?php echo gmdate('D, d M Y H:i:s') . ' GMT' ?> (<code>gmdate('D, d M Y H:i:s') . ' GMT'</code>)<br />
+			<em><?php echo $this->translate('Note that the formatted Date value has to be current') // TRANSLATE ?></em></li>
+			<li><?php echo $this->translate('User-Agent:') // TRANSLATE ?> <samp><?php echo 'Zend\Http\Client' ?></samp></li>
+			<li><?php echo $this->translate('Host:') // TRANSLATE ?> <samp><?php echo '127.0.0.1' ?></samp></li>
+			<li><?php echo $this->translate('Path/URI:') // TRANSLATE ?> <samp><?php echo '/ZendServer/Api/getSystemInfo' ?></samp></li>
 		</ul>
 	<h3><?php echo $this->translate('WebAPI Key') // TRANSLATE ?></h3>
-	<h3><?php echo $this->translate('Produced Hash') // TRANSLATE ?></h3>
+	<p><?php echo $this->translate('The WebAPI secret key is kept inside Zend Server in a secure location and cannot be retrieved directly from this script. You can retrieve the WebAPI key from the UI and enter here') // TRANSLATE ?></p>
+	<form action="<?php echo $this->url('application/storekey') ?>" method="POST">
+		<div><input type="text" name="webapiuser" placeholder="WebAPI user" /></div>
+		<div><input type="text" name="webapikey" placeholder="WebAPI key" /></div>
+		<div><input type="hidden" name="redirect" value="<?php $this->url('application/default', array('controller' => 'Basics', 'action' => 'signature')) ?>" /></div>
+		<div><input type="submit" value="<?php echo $this->translate('Upload key') ?>" /></div>
+	</form>
 	<h3><?php echo $this->translate('Signed Hash') // TRANSLATE ?></h3>
-	<h3><?php echo $this->translate('HTTP heade') // TRANSLATE ?>r</h3>
+	<p><?php echo $this->translate('The signing process creates a hash of all supplied parameters and then encrypts the string into an hmac, using the secret key provided beforehand')?></p>
+	<p><?php echo $this->translate('The resulting signature is:')?> <samp><?php echo $finalSignature ?></samp></p>
+	<p><?php echo $this->translate('Finally, the X-Zend-Signature header is ready:')?> <code>X-Zend-Signature: <?php echo $keyname ?>;<?php echo $finalSignature ?></code></p>
+	
 </div>

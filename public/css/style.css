@@ -43,3 +43,7 @@ p.description {
 .list-group-item:hover {
 	background-color: #EFEFEF;
 }
+
+div#siganture-panel.panel {
+	width: 700px;
+}

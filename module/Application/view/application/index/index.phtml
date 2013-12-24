@@ -2,7 +2,13 @@
     <h1><?php echo sprintf($this->translate('Welcome to Zend Server\'s %sWebAPI Samples%s'), '<span class="zf-green">', '</span>') // TRANSLATE ?></h1>
     <p><?php echo sprintf($this->translate('Congratulations! You have successfully installed the %sZend Server WebAPI samples%s application.
     		This application provides you a few examples of what can be done with the WebAPI and how we thought you could use the WebAPI.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank">', '</a>') // TRANSLATE ?></p>
-    <p><a class="btn btn-success btn-lg" href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank"><?php echo $this->translate('Check our documentation for more information') // TRANSLATE ?> &raquo;</a></p>
+    	<p><?php echo sprintf($this->translate('Before you start, we will need you to enter a webapi key for communicating with Zend Server. You can retrieve this key from %shere%s.'), '<a href="http://localhost:10081/ZendServer/ApiKeys" target="_blank">', '</a>') // TRANSLATE ?></p>
+		<form action="<?php echo $this->url('application/storekey') ?>" method="POST">
+			<div><input type="text" name="webapiuser" placeholder="WebAPI name" /></div>
+			<div><input type="text" name="webapikey" placeholder="WebAPI key" /></div>
+			<div><input type="hidden" name="redirect" value="<?php $this->url('application/default', array('controller' => 'Basics', 'action' => 'signature')) ?>" /></div>
+			<div><input type="submit" value="<?php echo $this->translate('Upload key') ?>" /></div>
+		</form>
 </div>
 
 <div class="row">
@@ -16,7 +22,7 @@
                 <p class="description"><?php echo sprintf($this->translate('These are code examples and explanations of the basic building blocks of using the WebAPI. These examples do not actually do anything in of themselves, instead they show you the first steps on the road to automation')) // TRANSLATE ?></p>
             	<ul class="list-unstyled list-group">
             		<li class="list-group-item">
-            			<a class="" href=""><?php echo $this->translate('Signatures') // TRANSLATE ?></a>
+            			<a class="" href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'Signature')) ?>"><?php echo $this->translate('Signatures') // TRANSLATE ?></a>
             			<div class="pull-right">
 	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#signing_api_requests.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>

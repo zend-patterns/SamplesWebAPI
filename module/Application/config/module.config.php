@@ -36,6 +36,17 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+                    'storekey' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/key',
+                            'defaults' => array(
+	                            '__NAMESPACE__' => 'Application\Controller',
+	                            'controller'    => 'Index',
+	                            'action'        => 'storekey',
+                            )
+                        ),
+                    ),
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
