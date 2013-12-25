@@ -12,21 +12,26 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
+use WebAPI\KeyManager;
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+    	$webapiKey = new KeyManager();
+        return new ViewModel(array(
+        	'hasKey' => $webapiKey->hasKeyInfo(),
+        	'keyName' => $webapiKey->getKeyName(),
+        	'key' => $webapiKey->getKey(),
+        ));
     }
     
     public function storekeyAction() {
     	$user = $this->getRequest()->getPost('webapiuser');
     	$key = $this->getRequest()->getPost('webapikey');
     	
-    	$session = new Container('webapiKey');
-    	$session->name = $user;
-    	$session->key = $key;
+    	$webapiKey = new KeyManager();
+    	$webapiKey->storeKey($user, $key);
     	
     	return $this->redirect()->toRoute('home');
     }
