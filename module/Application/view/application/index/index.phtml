@@ -3,10 +3,9 @@
     <p><?php echo sprintf($this->translate('Congratulations! You have successfully installed the %sZend Server WebAPI samples%s application.
     		This application provides you a few examples of what can be done with the WebAPI and how we thought you could use the WebAPI.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank">', '</a>') // TRANSLATE ?></p>
     	<p><?php echo sprintf($this->translate('Before you start, we will need you to enter a webapi key for communicating with Zend Server. You can retrieve this key from %shere%s.'), '<a href="http://localhost:10081/ZendServer/ApiKeys" target="_blank">', '</a>') // TRANSLATE ?></p>
-		<form action="<?php echo $this->url('application/storekey') ?>" method="POST">
+		<form action="<?php echo $this->url('storekey') ?>" method="POST">
 			<div><input type="text" name="webapiuser" placeholder="WebAPI name" /></div>
 			<div><input type="text" name="webapikey" placeholder="WebAPI key" /></div>
-			<div><input type="hidden" name="redirect" value="<?php $this->url('application/default', array('controller' => 'Basics', 'action' => 'signature')) ?>" /></div>
 			<div><input type="submit" value="<?php echo $this->translate('Upload key') ?>" /></div>
 		</form>
 </div>

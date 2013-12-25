@@ -20,10 +20,17 @@ return array(
                     ),
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
+            'storekey' => array(
+            		'type'    => 'Literal',
+            		'options' => array(
+            				'route'    => '/storekey',
+            				'defaults' => array(
+            						'__NAMESPACE__' => 'Application\Controller',
+            						'controller'    => 'Index',
+            						'action'        => 'storekey',
+            				)
+            		),
+            ),
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -36,17 +43,6 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'storekey' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/key',
-                            'defaults' => array(
-	                            '__NAMESPACE__' => 'Application\Controller',
-	                            'controller'    => 'Index',
-	                            'action'        => 'storekey',
-                            )
-                        ),
-                    ),
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(

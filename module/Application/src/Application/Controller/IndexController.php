@@ -11,11 +11,23 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Session\Container;
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
         return new ViewModel();
+    }
+    
+    public function storekeyAction() {
+    	$user = $this->getRequest()->getPost('webapiuser');
+    	$key = $this->getRequest()->getPost('webapikey');
+    	
+    	$session = new Container('webapiKey');
+    	$session->name = $user;
+    	$session->key = $key;
+    	
+    	return $this->redirect()->toRoute('home');
     }
 }
