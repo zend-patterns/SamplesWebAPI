@@ -15,14 +15,14 @@
                 <p class="description"><?php echo sprintf($this->translate('These are code examples and explanations of the basic building blocks of using the WebAPI. These examples do not actually do anything in of themselves, instead they show you the first steps on the road to automation')) // TRANSLATE ?></p>
             	<ul class="list-unstyled list-group">
             		<li class="list-group-item">
-            			<a class="" href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'Signature')) ?>"><?php echo $this->translate('Signatures') // TRANSLATE ?></a>
+            			<a href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'Signature')) ?>"><?php echo $this->translate('Signatures') // TRANSLATE ?></a>
             			<div class="pull-right">
 	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#signing_api_requests.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
             		<li class="list-group-item">
-            			<a href=""><?php echo $this->translate('Accept header & version') // TRANSLATE ?></a>
+            			<a href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'VersionNegotiation')) ?>"><?php echo $this->translate('Accept header & version') // TRANSLATE ?></a>
 	            		<div class="pull-right">
 	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#api_versioning_negotation.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>

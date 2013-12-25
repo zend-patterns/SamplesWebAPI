@@ -17,11 +17,10 @@ use Zend\Uri\Http;
 
 class BasicsController extends AbstractActionController
 {
-    public function indexAction()
-    {
-        return $this->forward()->dispatch('Application\Controller\Basics', array('action' => 'signature'));
-    }
-    
+	public function versionNegotiationAction() {
+		return array();
+	}
+	
     public function signatureAction() {
     	$uri = UriFactory::factory('http://localhost:10081/ZendServer/Api/getSystemInfo');
 
@@ -60,6 +59,11 @@ class BasicsController extends AbstractActionController
     			'useragent' => 'Zend\Http\Client',
     			'signatureHeaderFormatted' => $this->sampleSigHeader($user, $shortSig)
     	));
+    }
+    
+    public function indexAction()
+    {
+    	return $this->forward()->dispatch('Application\Controller\Basics', array('action' => 'signature'));
     }
     
     /**
