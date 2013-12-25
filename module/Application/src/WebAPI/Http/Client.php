@@ -33,7 +33,7 @@ class Client extends baseClient {
 		$headers['Date'] = gmdate('D, d M Y H:i:s') . ' GMT';
 		$headers['User-Agent'] = isset($headers['User-Agent']) ? $headers['User-Agent'] : 'Zend_http_Client';
 		
-		$signature = $this->generateSignature($headers['Date'], $headers['User-Agent'], $uri->getHost(), $uri->getPath());
+		$signature = $this->generateSignature($headers['Date'], $headers['User-Agent'], "{$uri->getHost()}:{$uri->getPort()}", $uri->getPath());
 
 		$headers['X-Zend-Signature'] = "{$this->keyName};$signature";
 		$headers['Accept'] = "application/vnd.zend.serverapi+xml";
