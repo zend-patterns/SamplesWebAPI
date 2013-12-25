@@ -52,13 +52,23 @@ class BasicsController extends AbstractActionController
     	
     	$method = new \ReflectionMethod('Application\Controller\BasicsController', 'signatureAction');
     	$filename = $method->getFileName();
-    	$start_line = $method->getStartLine() - 1;
-    	$end_line = $method->getEndLine();
+    	$start_line = $method->getStartLine();
+    	$end_line = $method->getEndLine() -1;
     	$length = $end_line - $start_line;
     	
     	$source = file($filename);
     	$methodbody = implode("", array_slice($source, $start_line, $length));
     	
-    	return new ViewModel(array('webapiResponse' => $response->getBody(), 'source' => $methodbody));
+    	return new ViewModel(array(
+    			'webapiResponse' => $response->getBody(), 
+    			'source' => $methodbody,
+    			'keyname' => $keySessionContainer->name,
+    			'key' => $keySessionContainer->key,
+    			'finalSignature' => $signed,
+    			'shortSignature' => substr($signed, 0, 10) . '...' . substr($signed, -10),
+    			'uri' => $uri,
+    			'date' => $date,
+    			'useragent' => $agent
+    	));
     }
 }
