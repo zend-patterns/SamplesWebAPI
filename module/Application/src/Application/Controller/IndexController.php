@@ -25,22 +25,4 @@ class IndexController extends AbstractActionController
         	'shortkey' => substr($webapiKey->getKey(), 0, 5) . '...' . substr($webapiKey->getKey(), -5)
         ));
     }
-    
-    public function storekeyAction() {
-    	$user = $this->getRequest()->getPost('webapiuser');
-    	$key = $this->getRequest()->getPost('webapikey');
-    	
-    	$webapiKey = new KeyManager();
-    	$webapiKey->storeKey($user, $key);
-    	
-    	return $this->redirect()->toRoute('home');
-    }
-    
-    public function clearkeyAction() {
-    	
-    	$webapiKey = new KeyManager();
-    	$webapiKey->clearKey();
-    	
-    	return $this->redirect()->toRoute('home');
-    }
 }

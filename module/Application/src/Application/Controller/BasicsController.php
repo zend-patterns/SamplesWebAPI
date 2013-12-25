@@ -12,9 +12,8 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use WebAPI\SignatureGenerator;
-use WebAPI\Http\Client;
 use Zend\Uri\UriFactory;
-use WebAPI\KeyManager;
+use Zend\Uri\Http;
 
 class BasicsController extends AbstractActionController
 {
@@ -24,66 +23,66 @@ class BasicsController extends AbstractActionController
     }
     
     public function signatureAction() {
-    	$keyManager = new KeyManager();
-    	
     	$uri = UriFactory::factory('http://localhost:10081/ZendServer/Api/getSystemInfo');
-    	
-    	$client = new Client($uri, array('key' => $keyManager->getKey(), 'keyName' => $keyManager->getKeyName()));
-    	$response = $client->send();
-    	
-    	$request = $client->getRequest()->fromString($client->getLastRawRequest());
-    	
-    	$date = $request->getHeader('Date')->getFieldValue();
-    	$agent = $request->getHeader('User-Agent')->getFieldValue();
-    	$signatureHeader = $request->getHeader('X-Zend-Signature')->getFieldValue();
-    	$accept = $request->getHeader('Accept')->getFieldValue();
-    	
-    	$signatureParts = explode(';', $signatureHeader);
-    	$signed = $signatureParts[1];
-    	$signatureParts[1] = substr($signatureParts[1], 0, 10) . '...' . substr($signatureParts[1], -10);
-    	$signatureHeaderFormatted = "{$request->getHeader('X-Zend-Signature')->getFieldName()}: {$signatureParts[0]};{$signatureParts[1]}";
-    	
-    	
-    	$method = new \ReflectionMethod('WebAPI\Http\Client', 'doRequest');
+
+    	$method = new \ReflectionMethod('Application\Controller\BasicsController', 'sampleSignature');
     	$filename = $method->getFileName();
-    	$start_line = $method->getStartLine() -1;
-    	$end_line = $method->getEndLine();
-    	$length = $end_line - $start_line;
-    	
-    	$source = file($filename);
-    	$doRequestBody = implode("", array_slice($source, $start_line, $length));
-    	
-    	
-    	$method = new \ReflectionMethod('WebAPI\Http\Client', 'generateSignature');
-    	$filename = $method->getFileName();
-    	$start_line = $method->getStartLine() -1;
+    	$start_line = $method->getStartLine() -6;
     	$end_line = $method->getEndLine();
     	$length = $end_line - $start_line;
     	
     	$source = file($filename);
     	$generateSignatureBody = implode("", array_slice($source, $start_line, $length));
     	
-    	$config = array(
-    			'indent'         => true,
-    			'output-xml'     => true,
-    			'input-xml'     => true,
-    			'wrap'         => '1000');
+    	$method = new \ReflectionMethod('Application\Controller\BasicsController', 'sampleSigHeader');
+    	$filename = $method->getFileName();
+    	$start_line = $method->getStartLine() -6;
+    	$end_line = $method->getEndLine();
+    	$length = $end_line - $start_line;
     	
-    	$tidy = new \tidy();
-    	$tidy->parseString($response->getBody(), $config, 'utf8');
-    	$tidy->cleanRepair();
+    	$source = file($filename);
+    	$generateSignatureBody .= "\n".implode("", array_slice($source, $start_line, $length));
+    	
+    	$key = md5(rand(0, 10));
+    	
+    	$signed = $this->sampleSignature($uri, $key);
+    	$shortSig = substr($signed, 0, 10) . '...' . substr($signed, -10);
+    	$user = 'my-key-name';
     	
     	return new ViewModel(array(
-    			'webapiResponse' => tidy_get_output($tidy), 
-    			'source' => "$doRequestBody\n$generateSignatureBody",
-    			'keyname' => $keyManager->getKeyName(),
-    			'key' => substr($keyManager->getKey(), 0, 5) . '...' . substr($keyManager->getKey(), -5),
+    			'source' => "$generateSignatureBody",
+    			'keyname' => $user,
+    			'key' => $key,
     			'finalSignature' => $signed,
-    			'shortSignature' => substr($signed, 0, 10) . '...' . substr($signed, -10),
+    			'shortSignature' => $shortSig,
     			'uri' => $uri,
-    			'date' => $date,
-    			'useragent' => $agent,
-    			'signatureHeaderFormatted' => $signatureHeaderFormatted
+    			'date' => gmdate('D, d M Y H:i:s') . ' GMT',
+    			'useragent' => 'Zend\Http\Client',
+    			'signatureHeaderFormatted' => $this->sampleSigHeader($user, $shortSig)
     	));
+    }
+    
+    /**
+     * @param Http $uri
+     * @param string $key
+     * @return string
+     */
+    private function sampleSignature(Http $uri, $key) {
+
+    	$sigGen = new SignatureGenerator();
+    	$sigGen->setDate(gmdate('D, d M Y H:i:s') . ' GMT');
+    	$sigGen->setUserAgent('Zend\Http\Client');
+    	$sigGen->setRequestUri("{$uri->getHost()}:{$uri->getPort()}");
+    	$sigGen->setRequestUri($uri->getPath());
+    	return $sigGen->generate($key);
+    }
+    
+    /**
+     * @param string $user
+     * @param string $signature
+     * @return string
+     */
+    private function sampleSigHeader($user, $signature) {
+    	return "X-Zend-Signature: {$user}:{$signature}";
     }
 }

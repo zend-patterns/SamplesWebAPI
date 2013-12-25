@@ -2,22 +2,6 @@
     <h1><?php echo sprintf($this->translate('Welcome to Zend Server\'s %sWebAPI Samples%s'), '<span class="zf-green">', '</span>') // TRANSLATE ?></h1>
     <p><?php echo sprintf($this->translate('Congratulations! You have successfully installed the %sZend Server WebAPI samples%s application.
     		This application provides you a few examples of what can be done with the WebAPI and how we thought you could use the WebAPI.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#web_api_reference_guide.htm" target="_blank">', '</a>') // TRANSLATE ?></p>
-<?php if ($hasKey): ?>
-	<p><?php echo $this->translate('Your WebAPI key is temporarily stored in your session. You can clear out the key by using the button below. When your session expires your key will be cleared automatically.') // TRANSLATE ?></p>
-	<p><?php echo $this->translate('Loaded WebAPI key name is:')?> <?php echo $keyName ?></p>
-	<p><?php echo $this->translate('Loaded WebAPI key is:')?> <?php echo $shortkey ?></p>
-	<form action="<?php echo $this->url('clearkey') ?>" method="POST">
-		<div><input type="submit" value="<?php echo $this->translate('Clear key') // TRANSLATE ?>" /></div>
-	</form>
-<?php else: ?>
-    	<p><?php echo sprintf($this->translate('Before you start, we will need you to enter a webapi key for communicating with Zend Server. You can retrieve this key from %shere%s.'), '<a href="http://localhost:10081/ZendServer/ApiKeys" target="_blank">', '</a>') // TRANSLATE ?></p>
-    	<p><?php echo $this->translate('You may browse the examples even without entering a key however the examples will not communicate with Zend Server to display output payloads. Your choice, of course, with a key it\'s just much more fun and we did work so hard ...' ) // TRANSLATE ?></p>
-		<form action="<?php echo $this->url('storekey') ?>" method="POST">
-			<div><input type="text" name="webapiuser" placeholder="WebAPI name" /></div>
-			<div><input type="text" name="webapikey" placeholder="WebAPI key" /></div>
-			<div><input type="submit" value="<?php echo $this->translate('Temporarily store key') // TRANSLATE ?>" /></div>
-		</form>
-<?php endif ?>
 </div>
 
 <div class="row">
