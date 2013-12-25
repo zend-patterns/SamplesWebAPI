@@ -20,6 +20,17 @@ return array(
                     ),
                 ),
             ),
+            'clearkey' => array(
+            		'type'    => 'Literal',
+            		'options' => array(
+            				'route'    => '/clearkey',
+            				'defaults' => array(
+            						'__NAMESPACE__' => 'Application\Controller',
+            						'controller'    => 'Index',
+            						'action'        => 'clearkey',
+            				)
+            		),
+            ),
             'storekey' => array(
             		'type'    => 'Literal',
             		'options' => array(

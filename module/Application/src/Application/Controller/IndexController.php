@@ -35,4 +35,12 @@ class IndexController extends AbstractActionController
     	
     	return $this->redirect()->toRoute('home');
     }
+    
+    public function clearkeyAction() {
+    	
+    	$webapiKey = new KeyManager();
+    	$webapiKey->clearKey();
+    	
+    	return $this->redirect()->toRoute('home');
+    }
 }
