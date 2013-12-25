@@ -11,6 +11,10 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use WebAPI\SignatureGenerator;
+use Zend\Http\Client;
+use Zend\Session\Container;
+use Zend\Uri\UriFactory;
 
 class BasicsController extends AbstractActionController
 {
@@ -20,6 +24,41 @@ class BasicsController extends AbstractActionController
     }
     
     public function signatureAction() {
-    	return new ViewModel();
+    	$keySessionContainer = new Container('webapiKey');
+    	
+    	$uri = UriFactory::factory('http://localhost:10081/ZendServer/Api/getSystemInfo');
+    	
+    	$date = gmdate('D, d M Y H:i:s') . ' GMT';
+    	$agent = 'Zend_Http_Client';
+    	
+    	$signature = new SignatureGenerator();
+    	$signature->setDate($date);
+    	$signature->setHost($uri->getHost());
+    	$signature->setRequestUri($uri->getPath());
+    	$signature->setUserAgent($agent);
+    	$signed = $signature->generate($keySessionContainer->key);
+    	
+    	$client = new Client();
+    	$client->setHeaders(array(
+    		'Date' => $date,
+    		'User-Agent' => $agent,
+    		'Accept' => 'application/vnd.zend.serverapi+xml',
+    		'X-Zend-Signature' => "{$keySessionContainer->name}:{$signed}"
+    	));
+    	$client->setUri($uri);
+    	
+    	$response = $client->send();
+    	
+    	
+    	$method = new \ReflectionMethod('Application\Controller\BasicsController', 'signatureAction');
+    	$filename = $method->getFileName();
+    	$start_line = $method->getStartLine() - 1;
+    	$end_line = $method->getEndLine();
+    	$length = $end_line - $start_line;
+    	
+    	$source = file($filename);
+    	$methodbody = implode("", array_slice($source, $start_line, $length));
+    	
+    	return new ViewModel(array('webapiResponse' => $response->getBody(), 'source' => $methodbody));
     }
 }

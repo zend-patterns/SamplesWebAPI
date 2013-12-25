@@ -44,6 +44,10 @@ p.description {
 	background-color: #EFEFEF;
 }
 
-div#siganture-panel.panel {
-	width: 700px;
+#signature-panel-group .panel {
+	width: 50%;
+}
+
+footer {
+	clear: both;
 }
