@@ -63,8 +63,18 @@ class BasicsController extends AbstractActionController
     	$source = file($filename);
     	$generateSignatureBody = implode("", array_slice($source, $start_line, $length));
     	
+    	$config = array(
+    			'indent'         => true,
+    			'output-xml'     => true,
+    			'input-xml'     => true,
+    			'wrap'         => '1000');
+    	
+    	$tidy = new \tidy();
+    	$tidy->parseString($response->getBody(), $config, 'utf8');
+    	$tidy->cleanRepair();
+    	
     	return new ViewModel(array(
-    			'webapiResponse' => $response->getBody(), 
+    			'webapiResponse' => tidy_get_output($tidy), 
     			'source' => "$doRequestBody\n$generateSignatureBody",
     			'keyname' => $keyManager->getKeyName(),
     			'key' => substr($keyManager->getKey(), 0, 5) . '...' . substr($keyManager->getKey(), -5),

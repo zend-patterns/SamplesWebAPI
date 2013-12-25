@@ -48,6 +48,15 @@ p.description {
 	width: 50%;
 }
 
+.source-panel {
+	word-break: normal;
+	word-wrap: normal;
+}
+.source-panel code {
+	overflow: scroll;
+	display: block;
+}
+
 footer {
 	clear: both;
 }
