@@ -18,11 +18,6 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-    	$webapiKey = new KeyManager();
-        return new ViewModel(array(
-        	'hasKey' => $webapiKey->hasKeyInfo(),
-        	'keyName' => $webapiKey->getKeyName(),
-        	'shortkey' => substr($webapiKey->getKey(), 0, 5) . '...' . substr($webapiKey->getKey(), -5)
-        ));
+        return new ViewModel(array());
     }
 }
