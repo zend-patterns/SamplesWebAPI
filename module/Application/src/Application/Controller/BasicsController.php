@@ -12,8 +12,7 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use WebAPI\SignatureGenerator;
-use Zend\Http\Client;
-use Zend\Session\Container;
+use WebAPI\Http\Client;
 use Zend\Uri\UriFactory;
 use WebAPI\KeyManager;
 
@@ -29,47 +28,52 @@ class BasicsController extends AbstractActionController
     	
     	$uri = UriFactory::factory('http://localhost:10081/ZendServer/Api/getSystemInfo');
     	
-    	$date = gmdate('D, d M Y H:i:s') . ' GMT';
-    	$agent = 'Zend_Http_Client';
-    	
-    	$signature = new SignatureGenerator();
-    	$signature->setDate($date);
-    	$signature->setHost($uri->getHost());
-    	$signature->setRequestUri($uri->getPath());
-    	$signature->setUserAgent($agent);
-    	$signed = $signature->generate($keyManager->getKey());
-    	
-    	$client = new Client();
-    	$client->setHeaders(array(
-    		'Date' => $date,
-    		'User-Agent' => $agent,
-    		'Accept' => 'application/vnd.zend.serverapi+xml',
-    		'X-Zend-Signature' => "{$keyManager->getKeyName()}:{$signed}"
-    	));
-    	$client->setUri($uri);
-    	
+    	$client = new Client($uri, array('key' => $keyManager->getKey(), 'keyName' => $keyManager->getKeyName()));
     	$response = $client->send();
     	
+    	$request = $client->getRequest()->fromString($client->getLastRawRequest());
     	
-    	$method = new \ReflectionMethod('Application\Controller\BasicsController', 'signatureAction');
+    	$date = $request->getHeader('Date')->getFieldValue();
+    	$agent = $request->getHeader('User-Agent')->getFieldValue();
+    	$signatureHeader = $request->getHeader('X-Zend-Signature')->getFieldValue();
+    	$accept = $request->getHeader('Accept')->getFieldValue();
+    	
+    	$signatureParts = explode(';', $signatureHeader);
+    	$signed = $signatureParts[1];
+    	$signatureParts[1] = substr($signatureParts[1], 0, 10) . '...' . substr($signatureParts[1], -10);
+    	$signatureHeaderFormatted = "{$request->getHeader('X-Zend-Signature')->getFieldName()}: {$signatureParts[0]};{$signatureParts[1]}";
+    	
+    	
+    	$method = new \ReflectionMethod('WebAPI\Http\Client', 'doRequest');
     	$filename = $method->getFileName();
-    	$start_line = $method->getStartLine();
-    	$end_line = $method->getEndLine() -1;
+    	$start_line = $method->getStartLine() -1;
+    	$end_line = $method->getEndLine();
     	$length = $end_line - $start_line;
     	
     	$source = file($filename);
-    	$methodbody = implode("", array_slice($source, $start_line, $length));
+    	$doRequestBody = implode("", array_slice($source, $start_line, $length));
+    	
+    	
+    	$method = new \ReflectionMethod('WebAPI\Http\Client', 'generateSignature');
+    	$filename = $method->getFileName();
+    	$start_line = $method->getStartLine() -1;
+    	$end_line = $method->getEndLine();
+    	$length = $end_line - $start_line;
+    	
+    	$source = file($filename);
+    	$generateSignatureBody = implode("", array_slice($source, $start_line, $length));
     	
     	return new ViewModel(array(
     			'webapiResponse' => $response->getBody(), 
-    			'source' => $methodbody,
+    			'source' => "$doRequestBody\n$generateSignatureBody",
     			'keyname' => $keyManager->getKeyName(),
     			'key' => substr($keyManager->getKey(), 0, 5) . '...' . substr($keyManager->getKey(), -5),
     			'finalSignature' => $signed,
     			'shortSignature' => substr($signed, 0, 10) . '...' . substr($signed, -10),
     			'uri' => $uri,
     			'date' => $date,
-    			'useragent' => $agent
+    			'useragent' => $agent,
+    			'signatureHeaderFormatted' => $signatureHeaderFormatted
     	));
     }
 }
