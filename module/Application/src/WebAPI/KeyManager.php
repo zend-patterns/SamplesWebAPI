@@ -52,6 +52,6 @@ class KeyManager {
 	}
 	
 	public function clearKey() {
-		$this->storeKey('','');
+		$this->container->getManager()->getStorage()->clear('webapi');
 	}
 }

@@ -15,6 +15,7 @@ use WebAPI\SignatureGenerator;
 use Zend\Http\Client;
 use Zend\Session\Container;
 use Zend\Uri\UriFactory;
+use WebAPI\KeyManager;
 
 class BasicsController extends AbstractActionController
 {
@@ -24,7 +25,7 @@ class BasicsController extends AbstractActionController
     }
     
     public function signatureAction() {
-    	$keySessionContainer = new Container('webapiKey');
+    	$keyManager = new KeyManager();
     	
     	$uri = UriFactory::factory('http://localhost:10081/ZendServer/Api/getSystemInfo');
     	
@@ -36,14 +37,14 @@ class BasicsController extends AbstractActionController
     	$signature->setHost($uri->getHost());
     	$signature->setRequestUri($uri->getPath());
     	$signature->setUserAgent($agent);
-    	$signed = $signature->generate($keySessionContainer->key);
+    	$signed = $signature->generate($keyManager->getKey());
     	
     	$client = new Client();
     	$client->setHeaders(array(
     		'Date' => $date,
     		'User-Agent' => $agent,
     		'Accept' => 'application/vnd.zend.serverapi+xml',
-    		'X-Zend-Signature' => "{$keySessionContainer->name}:{$signed}"
+    		'X-Zend-Signature' => "{$keyManager->getKeyName()}:{$signed}"
     	));
     	$client->setUri($uri);
     	
@@ -62,8 +63,8 @@ class BasicsController extends AbstractActionController
     	return new ViewModel(array(
     			'webapiResponse' => $response->getBody(), 
     			'source' => $methodbody,
-    			'keyname' => $keySessionContainer->name,
-    			'key' => $keySessionContainer->key,
+    			'keyname' => $keyManager->getKeyName(),
+    			'key' => substr($keyManager->getKey(), 0, 5) . '...' . substr($keyManager->getKey(), -5),
     			'finalSignature' => $signed,
     			'shortSignature' => substr($signed, 0, 10) . '...' . substr($signed, -10),
     			'uri' => $uri,

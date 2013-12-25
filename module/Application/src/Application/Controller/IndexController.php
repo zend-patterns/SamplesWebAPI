@@ -22,7 +22,7 @@ class IndexController extends AbstractActionController
         return new ViewModel(array(
         	'hasKey' => $webapiKey->hasKeyInfo(),
         	'keyName' => $webapiKey->getKeyName(),
-        	'key' => $webapiKey->getKey(),
+        	'shortkey' => substr($webapiKey->getKey(), 0, 5) . '...' . substr($webapiKey->getKey(), -5)
         ));
     }
     
