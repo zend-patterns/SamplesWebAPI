@@ -1,1 +1,19 @@
-<?php
+<div id="signature-panel-group" class="panel-group">
+	<div id="siganture-panel" class="panel pull-left"><div class="panel-body">
+		<h2><?php echo $this->translate('Version Negotiation') // TRANSLATE ?></h2>
+		<p><?php echo $this->translate('Version negotiation is a server-side process of selecting a WebAPI verion to use to respond to user requests. Version selection is important because it may affect the WebAPI behavior and the expected output.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('You can find the available versions for your installation of Zend Server using the getSystemInfo WebAPI action.') // TRANSLATE ?></p>
+		<h3><?php echo $this->translate('Version selection, in detail') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('Zend Server relies on the Accept header to select the version that will be used in the response. This header is provided as part of the WebAPI request and may or may not specify a version.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Not specifying a version will cause Zend Server to select the earliest possible version for the WebAPI action that is requested.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Specifying a version will cause Zend Server to try and deliver the closest version which is equal or less than the specified version.') // TRANSLATE ?></p>
+		<h3><?php echo $this->translate('Output mode selection') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('The Accept header may also specify a particular output format, current options are JSON and XML. The JSON and XML formats are not a direct translation of each other, due to the different natures and syntax of these two formats.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Note that some actions are not allowed JSON output, particularly export operations that return an XML specifically.') // TRANSLATE ?></p>
+	</div></div>
+	<div id="result-panel" class="panel pull-left"><div class="panel-body">
+		<h2><?php echo $this->translate('WebAPI Accept examples') // TRANSLATE ?></h2>
+		<h3><?php echo $this->translate('Example code') // TRANSLATE ?></h3>
+		<div class="source-panel highlighted-source-panel"><?php echo str_replace('&nbsp;&nbsp;', '&nbsp;', highlight_string("<?php\n{$source}", true)) ?></div>
+	</div></div>
+</div>
