@@ -17,6 +17,14 @@ use Zend\Uri\Http;
 
 class BasicsController extends AbstractActionController
 {
+	public function sourceAction() {
+		$reflector = new \ReflectionClass('WebAPI\SignatureGenerator');
+		return array(
+				'filepath' => $reflector->getFileName(),
+				'body' => "namespace {$reflector->getNamespaceName()};\n{$this->reflectClassBody('WebAPI\SignatureGenerator')}");
+	}
+	
+	
 	public function versionNegotiationAction() {
 		return array();
 	}
@@ -24,23 +32,7 @@ class BasicsController extends AbstractActionController
     public function signatureAction() {
     	$uri = UriFactory::factory('http://localhost:10081/ZendServer/Api/getSystemInfo');
 
-    	$method = new \ReflectionMethod('Application\Controller\BasicsController', 'sampleSignature');
-    	$filename = $method->getFileName();
-    	$start_line = $method->getStartLine() -6;
-    	$end_line = $method->getEndLine();
-    	$length = $end_line - $start_line;
-    	
-    	$source = file($filename);
-    	$generateSignatureBody = implode("", array_slice($source, $start_line, $length));
-    	
-    	$method = new \ReflectionMethod('Application\Controller\BasicsController', 'sampleSigHeader');
-    	$filename = $method->getFileName();
-    	$start_line = $method->getStartLine() -6;
-    	$end_line = $method->getEndLine();
-    	$length = $end_line - $start_line;
-    	
-    	$source = file($filename);
-    	$generateSignatureBody .= "\n".implode("", array_slice($source, $start_line, $length));
+    	$generateSignatureBody = "{$this->reflectMethodBody('Application\Controller\BasicsController', 'sampleSignature', 0, -6)}\n{$this->reflectMethodBody('Application\Controller\BasicsController', 'sampleSigHeader', 0, -6)}";
     	
     	$key = md5(rand(0, 10));
     	
@@ -89,4 +81,38 @@ class BasicsController extends AbstractActionController
     private function sampleSigHeader($user, $signature) {
     	return "X-Zend-Signature: {$user}:{$signature}";
     }
+    
+	/**
+	 * @param string $class
+	 * @param string $method
+	 * @param number $suffixOffset
+	 * @param number $prefixOffset
+	 * @return string
+	 */
+	private function reflectClassBody($class, $suffixOffset = 0, $prefixOffset = -1) {
+		$class = new \ReflectionClass($class);
+		return $this->reflectOutput($class, $suffixOffset, $prefixOffset);
+	}
+    
+	/**
+	 * @param string $class
+	 * @param string $method
+	 * @param number $suffixOffset
+	 * @param number $prefixOffset
+	 * @return string
+	 */
+	private function reflectMethodBody($class, $method, $suffixOffset = 0, $prefixOffset = -1) {
+		$method = new \ReflectionMethod($class, $method);
+		return $this->reflectOutput($method, $suffixOffset, $prefixOffset);
+	}
+	
+	private function reflectOutput($reflector, $suffixOffset, $prefixOffset) {
+		$filename = $reflector->getFileName();
+		$start_line = $reflector->getStartLine() + $prefixOffset;
+		$end_line = $reflector->getEndLine() + $suffixOffset;
+		$length = $end_line - $start_line;
+			
+		$source = file($filename);
+		return implode("", array_slice($source, $start_line, $length));
+	}
 }
