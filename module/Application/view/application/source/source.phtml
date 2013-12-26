@@ -1,0 +1,6 @@
+<?php foreach ($source as $reflected) :?>
+<div class="panel">
+	<p><?php echo $this->translate('Full filepath:')?> <?php echo $reflected['filepath'] ?></p>
+	<div class="source-panel full-size-source"><?php echo highlight_string($reflected['body'], true) ?></div>
+</div>
+<?php endforeach ?>

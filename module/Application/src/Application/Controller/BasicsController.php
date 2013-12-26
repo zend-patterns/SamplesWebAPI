@@ -17,13 +17,6 @@ use Zend\Uri\Http;
 
 class BasicsController extends AbstractActionController
 {
-	public function sourceAction() {
-		$reflector = new \ReflectionClass('WebAPI\SignatureGenerator');
-		return array(
-				'filepath' => $reflector->getFileName(),
-				'body' => "namespace {$reflector->getNamespaceName()};\n{$this->reflectClassBody('WebAPI\SignatureGenerator')}");
-	}
-	
 	
 	public function versionNegotiationAction() {
 		$getAcceptHeader = $this->reflectMethodBody('WebAPI\Http\Client', 'getAcceptHeader', 0, -6);

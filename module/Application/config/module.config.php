@@ -20,28 +20,6 @@ return array(
                     ),
                 ),
             ),
-            'clearkey' => array(
-            		'type'    => 'Literal',
-            		'options' => array(
-            				'route'    => '/clearkey',
-            				'defaults' => array(
-            						'__NAMESPACE__' => 'Application\Controller',
-            						'controller'    => 'Index',
-            						'action'        => 'clearkey',
-            				)
-            		),
-            ),
-            'storekey' => array(
-            		'type'    => 'Literal',
-            		'options' => array(
-            				'route'    => '/storekey',
-            				'defaults' => array(
-            						'__NAMESPACE__' => 'Application\Controller',
-            						'controller'    => 'Index',
-            						'action'        => 'storekey',
-            				)
-            		),
-            ),
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -54,18 +32,36 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'default' => array(
+	                'default' => array(
+	                		'type'    => 'Segment',
+	                		'options' => array(
+	                				'route'    => '/[:controller[/:action]]',
+	                				'constraints' => array(
+	                						'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+	                						'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+	                				),
+	                				'defaults' => array(
+	                				),
+	                		),
+	                ),
+                    'source' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '/ShowSource/:workflow/:topic',
                             'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'workflow' => '[a-zA-Z]+',
+                                'topic'     => '[a-zA-Z]+',
                             ),
                             'defaults' => array(
+                            	'__NAMESPACE__' => 'Application\Controller',
+                            	'controller' => 'Source',
+                            	'action' => 'source',
+                            	'workflow' => '',
+                            	'topic' => ''
                             ),
                         ),
                     ),
+                    
                 ),
             ),
         ),
@@ -92,7 +88,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Basics' => 'Application\Controller\BasicsController'
+            'Application\Controller\Basics' => 'Application\Controller\BasicsController',
+            'Application\Controller\Source' => 'Application\Controller\SourceController',
         ),
     ),
     'view_manager' => array(
@@ -111,10 +108,20 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    // Placeholder for console routes
-    'console' => array(
-        'router' => array(
-            'routes' => array(
+    'sources' => array(
+        'Basics' => array(
+            'Signature' => array(
+            	'classes' => array(
+			    	'WebAPI\SignatureGenerator',
+			    )
+            ),
+            'VersionNegotiation' => array(
+	            'classes' => array(
+            		'WebAPI\Http\Client',
+	            ),
+	            'files' => array(
+	            	
+	            )
             ),
         ),
     ),

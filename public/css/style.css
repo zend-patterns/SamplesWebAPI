@@ -52,9 +52,14 @@ p.description {
 	word-break: normal;
 	word-wrap: normal;
 }
+
 .source-panel code {
 	overflow: scroll;
 	display: block;
+}
+
+.full-size-source code {
+	overflow: auto;
 }
 
 footer {
