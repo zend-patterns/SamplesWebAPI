@@ -18,6 +18,10 @@ use Zend\Uri\Http;
 class BasicsController extends AbstractActionController
 {
 	
+	public function errorOutputAction() {
+		return array();
+	}
+	
 	public function versionNegotiationAction() {
 		$getAcceptHeader = $this->reflectMethodBody('WebAPI\Http\Client', 'getAcceptHeader', 0, -6);
 		return array('getAcceptHeader' => $getAcceptHeader);

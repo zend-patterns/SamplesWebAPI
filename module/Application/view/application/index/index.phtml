@@ -29,9 +29,9 @@
 	            		</div>
             		</li>
             		<li class="list-group-item">
-            			<a href=""><?php echo $this->translate('Error standard output') // TRANSLATE ?></a>
+            			<a href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'ErrorOutput')) ?>"><?php echo $this->translate('Error standard output') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Basics', 'topic' => 'ErrorOutput')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#response_format.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>

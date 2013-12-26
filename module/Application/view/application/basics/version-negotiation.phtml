@@ -1,5 +1,5 @@
-<div id="signature-panel-group" class="panel-group">
-	<div id="siganture-panel" class="panel pull-left"><div class="panel-body">
+<div class="samples-panel-group panel-group">
+	<div class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('Version Negotiation') // TRANSLATE ?></h2>
 		<p><?php echo $this->translate('Version negotiation is a server-side process of selecting a WebAPI verion to use to respond to user requests. Version selection is important because it may affect the WebAPI behavior and the expected output.') // TRANSLATE ?></p>
 		<p><?php echo $this->translate('You can find the available versions for your installation of Zend Server using the getSystemInfo WebAPI action. Sample output:') // TRANSLATE ?></p>
@@ -29,7 +29,7 @@
 		<h3><?php echo $this->translate('Accept header synopsis:') // TRANSLATE ?></h3>
 		<p><code><?php echo htmlentities("application/vnd.zend.serverapi[+<'json'|'xml'>][;version=<version>]") ?></code></p>
 	</div></div>
-	<div id="result-panel" class="panel pull-left"><div class="panel-body">
+	<div class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('WebAPI Accept examples') // TRANSLATE ?></h2>
 		<p><?php echo $this->translate('The following examples should give you an idea of what to expect of the WebAPI version negotiation behavior.') // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('Version Negotiation') // TRANSLATE ?></h3>
