@@ -1,1 +1,28 @@
-<?php
+<div class="samples-panel-group panel-group">
+	<div class="panel pull-left"><div class="panel-body">
+		<h2><?php echo $this->translate('List Deployed Applications') // TRANSLATE ?></h2>
+		<p><?php echo $this->translate('One of the key features of Zend Server, within the scope of Continuous Delivery, is the ability to deploy application packages on a server or cluster. These applications can then be specifically targetted for monitoring, caching, statistics gathering and many other capabilities that Zend Server provides.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('The most basic activity for working with application is the ability to query Zend Server about its deployed applications.') // TRANSLATE ?></p>
+	
+		<h3><?php echo $this->translate('applicationGetStatus: Input Parameters') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('applicationGetStatus returns a list of applications according to a set of application IDs. This action can be used to retrieve a full list of applications or just information about a few specific applications.') // TRANSLATE ?></p>
+		<h3><?php echo $this->translate('applicationGetStatus: Output Structure') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('The expected output is made out of a list of elements of the type applicationInfo. This element is composed of a few element groups:') // TRANSLATE ?></p>
+		<ul>
+			<li><?php echo $this->translate('various properties such as &lt;userApplicationName&gt;, &lt;baseUrl&gt;, &lt;installedLocation&gt; and &lt;status&gt;') // TRANSLATE ?></li>
+			<li><?php echo $this->translate('&lt;servers&gt; element is a list of servers, in a cluster and the state of their deployed copy of the application. This includes the application version and its status.') // TRANSLATE ?></li>
+			<li><?php echo $this->translate('&lt;deployedVersions&gt; element will contain at most two versions of the deployed application.') // TRANSLATE ?></li>
+			<li><?php echo $this->translate('&lt;messageList&gt; element will contain messages of varying severity that can give you details about critical and non-critical issues in your application.') // TRANSLATE ?></li>
+		</ul>
+		<h3><?php echo $this->translate('applicationGetStatus Common uses') // TRANSLATE ?></h3>
+		<ul>
+			<li><?php echo $this->translate('The &lt;status&gt; property is a good way to monitor the general state of the application. Should an application instance fail, anywhere, this error will propagate to the aggregated status element.') // TRANSLATE ?></li>
+			<li><?php echo $this->translate('Using the &lt;servers&gt; list you can monitor each application\'s instance state for every individual server.') // TRANSLATE ?></li>
+			<li><?php echo $this->translate('The &lt;deployedVersions&gt; element will indicate which is the current version and which is available for rollback. Using this list you can determine if you can rollback an application and to which version it will end up with.') // TRANSLATE ?></li>
+		</ul>
+	</div></div>
+	<div class="panel pull-left"><div class="panel-body">
+		<h2><?php echo $this->translate('WebAPI request example') // TRANSLATE ?></h2>
+		<h3><?php echo $this->translate('Example code') // TRANSLATE ?></h3>
+	</div></div>
+</div>
