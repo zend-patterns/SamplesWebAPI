@@ -48,7 +48,7 @@
                 <p class="description"><?php echo $this->translate('Simple code examples that show some one step workflows that can be used for retrieving information from Zend Server. These actions only require parsing of the response and usually do not require any other activity') // TRANSLATE ?></p>
                 <ul class="list-unstyled list-group">
             		<li class="list-group-item">
-            			<a class="" href=""><?php echo $this->translate('List applications') // TRANSLATE ?></a>
+            			<a href="<?php echo $this->url('application/default', array('controller' => 'Simple', 'action' => 'ListApplications')) ?>"><?php echo $this->translate('List applications') // TRANSLATE ?></a>
             			<div class="pull-right">
 	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_applicationgetstatus_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>

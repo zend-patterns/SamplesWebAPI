@@ -90,6 +90,7 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Basics' => 'Application\Controller\BasicsController',
             'Application\Controller\Source' => 'Application\Controller\SourceController',
+            'Application\Controller\Simple' => 'Application\Controller\SimpleController',
         ),
     ),
     'view_manager' => array(
