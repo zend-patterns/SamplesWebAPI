@@ -26,7 +26,8 @@ class BasicsController extends AbstractActionController
 	
 	
 	public function versionNegotiationAction() {
-		return array();
+		$getAcceptHeader = $this->reflectMethodBody('WebAPI\Http\Client', 'getAcceptHeader', 0, -6);
+		return array('getAcceptHeader' => $getAcceptHeader);
 	}
 	
     public function signatureAction() {

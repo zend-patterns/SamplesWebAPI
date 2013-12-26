@@ -16,6 +16,16 @@ class Client extends baseClient {
 	 * @var string
 	 */
 	private $keyName;
+
+	/**
+	 * @var string
+	 */
+	private $output;
+	
+	/**
+	 * @var string
+	 */
+	private $version;
 	
 	/* (non-PHPdoc)
 	 * @see \Zend\Http\Client::__construct()
@@ -23,6 +33,8 @@ class Client extends baseClient {
 	public function __construct($uri = null, $options = null) {
 		$this->key = $options['key'];
 		$this->keyName = $options['keyName'];
+		$this->output = isset($options['output']) ? $options['output'] : '';
+		$this->version = isset($options['version']) ? $options['version'] : '';
 		parent::__construct($uri, $options);
 	}
 
@@ -36,10 +48,21 @@ class Client extends baseClient {
 		$signature = $this->generateSignature($headers['Date'], $headers['User-Agent'], "{$uri->getHost()}:{$uri->getPort()}", $uri->getPath());
 
 		$headers['X-Zend-Signature'] = "{$this->keyName};$signature";
-		$headers['Accept'] = "application/vnd.zend.serverapi+xml";
+		$headers['Accept'] = $this->getAcceptHeader($this->output, $this->version);
 		return parent::doRequest($uri, $method, $secure, $headers, $body);
 	}
 
+	/**
+	 * @param string $output
+	 * @param string $version
+	 * @return string
+	 */
+	private function getAcceptHeader($output, $version) {
+		$output = $output ? "+{$output}" : '';
+		$version = $version ? ";version={$version}" : '';
+		return "application/vnd.zend.serverapi{$output}{$version}";
+	}
+	
 	/**
 	 * @param string $date
 	 * @param string $useragent

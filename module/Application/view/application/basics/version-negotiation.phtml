@@ -31,7 +31,9 @@
 	</div></div>
 	<div id="result-panel" class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('WebAPI Accept examples') // TRANSLATE ?></h2>
-		<div class="source-panel highlighted-source-panel"><code><?php echo nl2br(htmlentities('
+		<p><?php echo $this->translate('The following examples should give you an idea of what to expect of the WebAPI version negotiation behavior.') // TRANSLATE ?></p>
+		<h3><?php echo $this->translate('Version Negotiation') // TRANSLATE ?></h3>
+		<div class="source-panel"><code><?php echo nl2br(htmlentities('
 		Accept: application/vnd.zend.serverapi+json;version=1.7
 		// Will return a JSON output using the WebAPI 1.7 protocol
 		
@@ -49,5 +51,8 @@
 		// action and use it to generate output in xml (default)
 ')) ?>
 		</code></div>
+		<h3><?php echo $this->translate('Creating an Accept header') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('Possible implementation for parsing an accept header:') // TRANSLATE ?></p>
+		<div class="source-panel highlighted-source-panel"><?php echo highlight_string($getAcceptHeader, true) ?></div>
 	</div></div>
 </div>
