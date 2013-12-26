@@ -119,8 +119,8 @@ return array(
 	            'classes' => array(
             		'WebAPI\Http\Client',
 	            ),
-	            'files' => array(
-	            	
+	            'public' => array(
+	            	'examples/version.php'
 	            )
             ),
         ),

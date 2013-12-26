@@ -26,6 +26,17 @@ class SourceController extends AbstractActionController
 		
 		$sources = array();
 		
+		if (isset($reflections['public'])) {
+			foreach ($reflections['public'] as $file) {
+				$basePath = dirname($this->getRequest()->getServer('SCRIPT_FILENAME'));
+				$sources[] = array(
+						'uri' => $file,
+						'filepath' => $basePath . DIRECTORY_SEPARATOR . $file,
+						'body' => file_get_contents($basePath . DIRECTORY_SEPARATOR . $file)
+				);
+			}
+		}
+		
 		if (isset($reflections['classes'])) {
 			foreach ($reflections['classes'] as $class) {
 				$reflector = new \ReflectionClass($class);
