@@ -28,6 +28,19 @@ $client = new Client(
 		));
 
 $response = $client->send()->getBody();
+
+$config = array(
+		'indent'         => true,
+		'input-xml'   => true,
+		'output-xml'   => true,
+		'escape-cdata' => true,
+		'wrap'           => 400);
+
+
+$tidy = new tidy;
+$tidy->parseString($response, $config, 'utf8');
+$tidy->cleanRepair();
+
 $request = Request::fromString($client->getLastRawRequest());
 ?>
 <h2>Example output</h2>
@@ -40,4 +53,4 @@ $request = Request::fromString($client->getLastRawRequest());
 <h3>Headers sent:</h3>
 <pre><code><?php echo htmlentities(print_r($request->getHeaders()->toArray(),true)) ?></code></pre>
 <h3>Response:</h3>
-<pre><code><?php echo htmlentities($response) ?></code></pre>
+<pre><code><?php echo htmlentities($tidy) ?></code></pre>
