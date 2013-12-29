@@ -62,6 +62,10 @@ p.description {
 	overflow: auto;
 }
 
+#application_get_status-output-panel code{
+	height: 510px;
+}
+
 footer {
 	clear: both;
 }
