@@ -125,5 +125,15 @@ return array(
 	            )
             ),
         ),
+        'Simple' => array(
+        	'ListApplications' => array(
+	        	'classes' => array(
+            		'WebAPI\Http\Client',
+	            ),
+	            'public' => array(
+	            	'examples/applicationGetStatus.php'
+	            )
+	        )
+        )
     ),
 );
