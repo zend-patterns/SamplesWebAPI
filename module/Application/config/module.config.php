@@ -119,6 +119,7 @@ return array(
             'VersionNegotiation' => array(
 	            'classes' => array(
             		'WebAPI\Http\Client',
+            		'WebAPI\SignatureGenerator',
 	            ),
 	            'public' => array(
 	            	'examples/version.php'
@@ -129,6 +130,7 @@ return array(
         	'ListApplications' => array(
 	        	'classes' => array(
             		'WebAPI\Http\Client',
+            		'WebAPI\SignatureGenerator',
 	            ),
 	            'public' => array(
 	            	'examples/applicationGetStatus.php'
