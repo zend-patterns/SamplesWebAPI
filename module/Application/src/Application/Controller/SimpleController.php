@@ -17,6 +17,11 @@ use Zend\Uri\Http;
 
 class SimpleController extends AbstractActionController
 {
+    public function EventInfoAction() {
+    	
+    	return array();
+    }
+    
     public function listApplicationsAction() {
     	
     	return array();

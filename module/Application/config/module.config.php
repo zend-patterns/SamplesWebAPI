@@ -135,7 +135,16 @@ return array(
 	            'public' => array(
 	            	'examples/applicationGetStatus.php'
 	            )
-	        )
+	        ),
+        	'EventInfo' => array(
+	        	'classes' => array(
+            		'WebAPI\Http\Client',
+            		'WebAPI\SignatureGenerator',
+	            ),
+	            'public' => array(
+	            	'examples/monitorGetEvents.php'
+	            )
+	        ),
         )
     ),
 );
