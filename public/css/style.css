@@ -66,6 +66,10 @@ p.description {
 	height: 510px;
 }
 
+#monitor_get_issue_details-output-panel code{
+	height: 845px;
+}
+
 footer {
 	clear: both;
 }

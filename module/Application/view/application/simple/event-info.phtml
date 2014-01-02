@@ -8,7 +8,8 @@
 		<p><?php echo sprintf($this->translate('monitorGetIssueDetails accepts two parameters - the issueId to retrieve information for and a limit on the number of event groups (event instances) to be retrieved in this request.')) // TRANSLATE ?></p>
 		<p><?php echo sprintf($this->translate('The issueId variable can be found in a listing WebAPI action such as %smonitorGetIssuesByPredefinedFilter%s.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#monitorgetissueslistbypredefinedfilter.htm" target="_blank">', '</a>') // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('monitorGetIssueDetails: Output Structure') // TRANSLATE ?></h3>
-		<p><?php echo $this->translate('The WebAPI action monitorGetIssueDetails returns all available information about the event and about its aggregated event groups. Event groups are aggregates of identical instances of the same event, which are created in order to cut down on space requirements for storing information. The response is composed of a few strucutures:') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('The WebAPI action monitorGetIssueDetails returns all available information about the event and about its aggregated event groups. Event groups are aggregates of identical instances of the same event, which are created in order to cut down on space requirements for storing information.') // TRANSLATE ?></p>
+		<h4><?php echo $this->translate('The response is composed of a few strucutures:') // TRANSLATE ?></h4>
 		<ul>
 			<li><?php echo $this->translate('The issue element contains most basic and meta information about the event and the php environment in which it happened. This information is common to all associated Event Groups. Such information includes the Monitor Rule that generated the event, its last occurence timestamp, the number of times the event happened and associated codetracing package information.') // TRANSLATE ?></li>
 			<li><?php echo $this->translate('The generalDetails element contains details about the exact location of the error within the application - filepath, line number, the php error code, etc.') // TRANSLATE ?></li>
@@ -38,68 +39,85 @@
 
 \$response = \$client->send()->getBody();", true) ?></div>
 		<h3><?php echo $this->translate('Example response') // TRANSLATE ?></h3>
-		<div id="monitor_get_issue_details-output-panel" class="source-panel"><code><?php echo nl2br(str_replace(' ','&nbsp',htmlentities('<zendServerAPIResponse xmlns="http://www.zend.com/server/api/1.7">
-  <requestData>
-    <apiKeyName>admin</apiKeyName>
-    <method>applicationGetStatus</method>
-  </requestData>
-  <responseData>
-    <applicationsList>
-      <applicationInfo>
-        <id>7</id>
-        <baseUrl>http://&lt;default-server&gt;/samples</baseUrl>
-        <appName>SamplesWebAPI</appName>
-        <userAppName>SamplesWebAPI</userAppName>
-        <installedLocation>/usr/local/zend/var/apps/http/__default__/0/samples/1.0.0_20</installedLocation>
-        <status>deployed</status>
-        <isRollbackable>true</isRollbackable>
-        <isRedeployable>true</isRedeployable>
-        <servers>
-          <applicationServer>
-            <id>0</id>
-            <deployedVersion>1.0.0</deployedVersion>
-            <status>deployed</status>
-          </applicationServer>
-        </servers>
-        <deployedVersion>1.0.0</deployedVersion>
-        <applicationRollbackVersion>1.0.0</applicationRollbackVersion>
-        <messageList></messageList>
-        <creationTime>2013-12-25T14:35:46+02:00</creationTime>
-        <creationTimeTimestamp>1387974946</creationTimeTimestamp>
-        <lastUsed>2013-12-25T14:35:46+02:00</lastUsed>
-        <lastUsedTimestamp>1387974946</lastUsedTimestamp>
-        <isDefinedApplication>false</isDefinedApplication>
-        <vhostId>false</vhostId>
-      </applicationInfo>
-      <applicationInfo>
-        <id>9</id>
-        <baseUrl>http://&lt;default-server&gt;:80/webapi-tests</baseUrl>
-        <appName>ZendServer-WebapiTests</appName>
-        <userAppName>ZendServer-WebapiTests</userAppName>
-        <installedLocation>/usr/local/zend/var/apps/http/__default__/0/webapi-tests/1.0.0_12</installedLocation>
-        <status>deployed</status>
-        <isRollbackable>true</isRollbackable>
-        <isRedeployable>true</isRedeployable>
-        <servers>
-          <applicationServer>
-            <id>0</id>
-            <deployedVersion>1.0.0</deployedVersion>
-            <status>deployed</status>
-          </applicationServer>
-        </servers>
-        <deployedVersion>1.0.0</deployedVersion>
-        <applicationRollbackVersion>1.0.0</applicationRollbackVersion>
-        <messageList></messageList>
-        <creationTime>2013-12-24T10:30:15+02:00</creationTime>
-        <creationTimeTimestamp>1387873815</creationTimeTimestamp>
-        <lastUsed>2013-12-24T10:30:15+02:00</lastUsed>
-        <lastUsedTimestamp>1387873815</lastUsedTimestamp>
-        <isDefinedApplication>false</isDefinedApplication>
-        <vhostId>false</vhostId>
-      </applicationInfo>
-    </applicationsList>
-  </responseData>
-</zendServerAPIResponse>'))) ?>
+		<div id="monitor_get_issue_details-output-panel" class="source-panel"><code><?php echo nl2br(str_replace(' ','&nbsp',htmlentities(
+<<<ISSUEDETAILS
+<zendServerAPIResponse xmlns="http://www.zend.com/server/api/1.7">
+ <requestData>
+  <apiKeyName><![CDATA[admin]]></apiKeyName>
+  <method>monitorGetIssueDetails</method>
+ </requestData>
+ <responseData>
+  <issueDetails>
+   <issue>
+    <id>77</id>
+    <eventType>6</eventType>
+    <rule><![CDATA[PHP Error]]></rule>
+    <count>1</count>
+    <lastOccurance>2014-01-02T13:23:06+02:00</lastOccurance>
+    <lastOccuranceTimestamp>1388661786</lastOccuranceTimestamp>
+    <severity>Critical</severity>
+    <status>Open</status>
+    <hasCodetracing>true</hasCodetracing>
+    <codeTracingEventGroupId></codeTracingEventGroupId>    
+    <ruleId>8</ruleId>      
+    <generalDetails>
+     <url><![CDATA[http://localhost/samples/application/Simple/EventInfo]]></url>
+     <baseUrl><![CDATA[]]></baseUrl>
+     <sourceFile><![CDATA[/usr/local/zend/var/apps/http/__default__/0/samples/1.0.0_6/public/index.php]]></sourceFile>
+     <sourceLine>17</sourceLine>
+     <function><![CDATA[Zend\Mvc\Application::init]]></function>
+     <customEventClass><![CDATA[]]></customEventClass>
+     <aggregationHint></aggregationHint>
+     <errorString><![CDATA[Uncaught exception 'Zend\ServiceManager\Exception\InvalidArgumentException' with message 'Provided abstract factory must be the class name of an abstract factory or an instance of an AbstractFactoryInterface.']]></errorString>
+     <errorType>E_ERROR</errorType>
+    </generalDetails>
+    <whatHappenedDetails>    <eventsGroupId>77</eventsGroupId>
+    <eventsCount>1</eventsCount>
+    <startTime>2014-01-02T13:23:06+02:00</startTime>
+    <startTimeTimestamp>1388661786</startTimeTimestamp>
+    <serverId>0</serverId>
+    <class></class>
+    <hasCodetracing>true</hasCodetracing>
+    <userData><![CDATA[]]></userData>
+    <javaBacktrace><![CDATA[]]></javaBacktrace>
+    <execTime>0</execTime>
+    <avgExecTime>0</avgExecTime>
+    <relExecTime>0</relExecTime>
+    <memUsage>0</memUsage>
+    <avgMemUsage>0</avgMemUsage>
+    <relMemUsage>0</relMemUsage>
+    <avgOutputSize>0</avgOutputSize>
+    <relOutputSize>0</relOutputSize>
+    <load>0</load></whatHappenedDetails>   
+    <appName></appName>
+    <appId></appId>
+    <routeDetails></routeDetails>
+   </issue>
+   <eventsGroups>
+    <eventsGroup>
+     <eventsGroupId>77</eventsGroupId>
+     <eventsCount>1</eventsCount>
+     <startTime>2014-01-02T13:23:06+02:00</startTime>
+     <startTimeTimestamp>1388661786</startTimeTimestamp>
+     <serverId>0</serverId>
+     <serverName>yonni-desktop</serverName>   
+     <class></class>
+     <hasCodetracing>true</hasCodetracing>
+     <userData><![CDATA[]]></userData>
+     <javaBacktrace><![CDATA[]]></javaBacktrace>
+     <execTime>0</execTime>
+     <relExecTime>0</relExecTime>
+     <memUsage>0</memUsage>
+     <relMemUsage>0</relMemUsage>
+     <relOutputSize>0</relOutputSize>
+     <load>0</load>
+    </eventsGroup>
+   </eventsGroups>
+   <totalCount>1</totalCount>
+  </issueDetails>
+ </responseData></zendServerAPIResponse>
+ISSUEDETAILS
+))) ?>
 		</code></div>
 	</div></div>
 </div>
