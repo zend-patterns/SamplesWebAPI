@@ -151,7 +151,7 @@ return array(
             		'WebAPI\SignatureGenerator',
 	            ),
 	            'public' => array(
-	            	'examples/logReadLines.php'
+	            	'examples/logsReadLines.php'
 	            )
 	        ),
         )
