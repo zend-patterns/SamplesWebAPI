@@ -58,14 +58,14 @@
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Simple', 'action' => 'EventInfo')) ?>"><?php echo $this->translate('Event Information') // TRANSLATE ?></a>
 	            		<div class="pull-right">
 	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'EventInfo')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
-	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#monitorgetissueslistbypredefinedfilter.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#monitorgetissuesdetails.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
 	            		</div>
             		</li>
             		<li class="list-group-item">
-            			<a href=""><?php echo $this->translate('List audit trail') // TRANSLATE ?></a>
+            			<a href="<?php echo $this->url('application/default', array('controller' => 'Simple', 'action' => 'LogContent')) ?>"><?php echo $this->translate('Retrieve Log Content') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
-	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_auditgetlist_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'LogContent')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_logsreadlines_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
             	</ul>

@@ -70,6 +70,10 @@ p.description {
 	height: 845px;
 }
 
+#log_read_lines-output-panel code{
+	height: 478px;
+}
+
 footer {
 	clear: both;
 }

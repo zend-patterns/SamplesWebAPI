@@ -145,6 +145,15 @@ return array(
 	            	'examples/monitorGetEvents.php'
 	            )
 	        ),
+        	'LogContent' => array(
+	        	'classes' => array(
+            		'WebAPI\Http\Client',
+            		'WebAPI\SignatureGenerator',
+	            ),
+	            'public' => array(
+	            	'examples/logReadLines.php'
+	            )
+	        ),
         )
     ),
 );
