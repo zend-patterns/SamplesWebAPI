@@ -20,8 +20,8 @@
 		<p><?php echo sprintf($this->translate('The action returns an %sapplicationInfo element%s which contains all information available about the new application.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#applicationinfo.htm">','</a>') // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('applicationDeploy Practices') // TRANSLATE ?></h3>
 		<p><?php echo $this->translate('Application deployment automation is usually involved in the organization\'s software life cycle or continuous delivery system. The deployment step could be the final release to production or part of the creation of a standard developer environment.') // TRANSLATE ?></p>
-		<p><?php echo $this->translate('Once the applicationDeploy command has been issued, it will take Zend Server some time to complete this operation. The amount of time depends on hook scripts\' execution, the size of the package and the platform running Zend Server.') // TRANSLATE ?></p>
-		<p><?php echo sprintf($this->translate('To track its progress you may poll Zend Server using the WebAPI action %sapplicationGetStatus%s. Using this action, you can poll a specific application\'s status and wait for it to arrive at some stable state - be it successful completion or an error in deployment.'),'<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_applicationgetstatus_method.htm">','</a>') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Once the applicationDeploy command has been issued, it will take Zend Server some time to complete this operation. Note the status "staging" in our example to the right. The amount of time depends on hook scripts\' execution, the size of the package and the platform running Zend Server.') // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('To track its progress you may poll Zend Server using the WebAPI action %sapplicationGetStatus%s. Using this action, you can poll a specific application\'s status and wait for it to arrive at some stable state - be it successful completion or an error in deployment.'),'<a href="http://localhost/samples/application/Simple/ListApplications">','</a>') // TRANSLATE ?></p>
 		<p><?php echo $this->translate('Also note that the deployment operation and its outcome will be registered in the Audit Trail, allowing you to revisit the deployment later. Should a deployment fail, the UI will issue a "Deployment Failed" notification.') // TRANSLATE ?></p>
 	</div></div>
 	<div class="panel pull-left"><div class="panel-body">
@@ -30,33 +30,48 @@
 		<div class="source-panel highlighted-source-panel"><?php echo highlight_string("<?php\n\$client = new \WebAPI\Http\Client(
 	'http://localhost:10081/ZendServer/Api/applicationDeploy',
 	array('baseUrl' => 'http://<default-server>/test', 'defaultServer' => 'TRUE'));
-\$client->
+\$client->setFileUpload('some-application.zpk', 'appPackage');
+\$client->setMethod('POST');
 \$response = \$client->send()->getBody();", true) ?></div>
 		<h3><?php echo $this->translate('Example response') // TRANSLATE ?></h3>
 		<div id="tasks_complete-output-panel" class="source-panel"><code><?php echo nl2br(str_replace(' ','&nbsp',htmlentities(
-<<<TASKSCOMPLETE
+<<<DEPLOYAPP
 <?xml version="1.0" encoding="UTF-8"?>
-<zendServerAPIResponse xmlns="http://www.zend.com/server/api/1.0">
- <requestData>
-   <apiKeyName>angel.eyes</apiKeyName>
-   <method>tasksComplete</method>
- </requestData>
- <responseData>
-   <tasksComplete>false</tasksComplete>
-   <tasksPerServer>
-     <serverComplete>
-       <serverId>0</serverId>
-       <complete>false</complete>
-     </serverComplete>
-   </tasksPerServer>
+<zendServerAPIResponse xmlns="http://www.zend.com/server/api/1.2"> 
+ <requestData> 
+  <apiKeyName><![CDATA[admin]]></apiKeyName> 
+  <method>applicationDeploy</method> 
+ </requestData> 
+ <responseData> 
+  <applicationInfo> 
+   <id>18</id> 
+   <baseUrl><![CDATA[http://<default-server>:80/asdfasdf1]]></baseUrl> 
+   <appName><![CDATA[sanity]]></appName> 
+   <userAppName><![CDATA[asdfasd12346asd]]></userAppName> 
+   <installedLocation><![CDATA[]]></installedLocation> 
+   <status>staging</status> 
+   <isRollbackable>false</isRollbackable> 
+   <isRedeployable>false</isRedeployable> 
+   <servers>
+    <applicationServer> 
+     <id>0</id> 
+     <deployedVersion>1.0.0</deployedVersion> 
+     <status>staging</status> 
+    </applicationServer> 
+   </servers> 
+   <deployedVersion>1.0.0</deployedVersion> 
+   <messageList></messageList> 
+   <creationTime>2014-01-07T16:56:16+02:00</creationTime> 
+   <creationTimeTimestamp>1389106576</creationTimeTimestamp> 
+   <lastUsed>2014-01-07T16:56:16+02:00</lastUsed> 
+   <lastUsedTimestamp>1389106576</lastUsedTimestamp> 
+   <isDefinedApplication>false</isDefinedApplication> 
+   <vhostId>false</vhostId> 
+  </applicationInfo>
  </responseData>
 </zendServerAPIResponse>
-TASKSCOMPLETE
+DEPLOYAPP
 ))) ?>
 		</code></div>
-		<h3><?php echo $this->translate('tasksComplete in the wild') // TRANSLATE ?></h3>
-		<p><?php echo $this->translate('tasksComplete in and of itself is not that interesting. However, coupled with other actions such as restartPhp or other actions, it can be used for implementing a responsive interface.') // TRANSLATE ?></p>
-		<p><?php echo $this->translate('Other pages in the Advanced Workflows part of this application will provide examples for using tasksComplete in a more functional way.') // TRANSLATE ?></p>
-		<p><?php echo $this->translate('Note that currently you may not create your own Zend Server Tasks and can only use the existing tasks provided by Zend Server.') // TRANSLATE ?></p>
 	</div></div>
 </div>

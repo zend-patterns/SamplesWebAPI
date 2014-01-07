@@ -191,6 +191,15 @@ return array(
 	            	'examples/tasksComplete.php'
 	            )
 	        ),
+        	'DeployApplication' => array(
+	        	'classes' => array(
+            		'WebAPI\Http\Client',
+            		'WebAPI\SignatureGenerator',
+	            ),
+	            'public' => array(
+	            	'examples/deployApplication.php'
+	            )
+	        ),
         ),
     ),
 );
