@@ -1,0 +1,62 @@
+<div class="samples-panel-group panel-group">
+	<div class="panel pull-left"><div class="panel-body">
+		<h2><?php echo $this->translate('Deploying an application zpk') // TRANSLATE ?></h2>
+		<p><?php echo sprintf($this->translate('Zend Server\'s UI allows the user to easily deploy an application %szpk package%s using a wizard. The UI wizard does not lend itself to easily integrate with external services, which is why the same functionality is available as a WebAPI action.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#application_package.htm">','</a>') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('The WebAPI action allows you to upload the application package, pass its relevant meta information and add any user params needed.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('When the response is returned the application has begun its deployment process.') // TRANSLATE ?></p>
+	
+		<h3><?php echo $this->translate('applicationDeploy: Input Parameters') // TRANSLATE ?></h3>
+		<p><?php echo sprintf($this->translate('applicationDeploy has two mandatory parameters that must be passed for this action to work. This request must also be sent with the "multipart/form-data" content type header.')) // TRANSLATE ?></p>
+		<ul>
+			<li><?php echo $this->translate('The request has to carry an attached zpk file. This is the package to be deployed and should have the form element name "appPackage".') // TRANSLATE ?></li>
+			<li><?php echo $this->translate('The parameter "baseUrl" is needed by Zend Server to assign an access interface, port or vhost for the application.') // TRANSLATE ?></li>
+		</ul>
+		<p><?php echo sprintf($this->translate('Other parameters are optional but have important effects on your deployment request:')) // TRANSLATE ?></p>
+		<ul>
+			<li><?php echo $this->translate('If "defaultServer" is set to TRUE the host passed in the baseUrl parameter will be overridden and the default-server value used instead. This means your application will be available from every interface on the webserver. This parameter does not affect port - whatever was specified in the baseUrl will still be used.') // TRANSLATE ?></li>
+			<li><?php echo sprintf($this->translate('"userParams" is an array parameter that allows the client to submit an associative array of user parameters. These parameters are specified by the package itself and the values are then made available in its %sinternal hook scripts%s. Should a required user parameter not be provided, an error will be returned and the deployment request aborted.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#understanding_the_package_structure.htm">','</a>') // TRANSLATE ?></li>
+		</ul>
+		<h3><?php echo $this->translate('applicationDeploy: Output Structure') // TRANSLATE ?></h3>
+		<p><?php echo sprintf($this->translate('The action returns an %sapplicationInfo element%s which contains all information available about the new application.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#applicationinfo.htm">','</a>') // TRANSLATE ?></p>
+		<h3><?php echo $this->translate('applicationDeploy Practices') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('Application deployment automation is usually involved in the organization\'s software life cycle or continuous delivery system. The deployment step could be the final release to production or part of the creation of a standard developer environment.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Once the applicationDeploy command has been issued, it will take Zend Server some time to complete this operation. The amount of time depends on hook scripts\' execution, the size of the package and the platform running Zend Server.') // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('To track its progress you may poll Zend Server using the WebAPI action %sapplicationGetStatus%s. Using this action, you can poll a specific application\'s status and wait for it to arrive at some stable state - be it successful completion or an error in deployment.'),'<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_applicationgetstatus_method.htm">','</a>') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Also note that the deployment operation and its outcome will be registered in the Audit Trail, allowing you to revisit the deployment later. Should a deployment fail, the UI will issue a "Deployment Failed" notification.') // TRANSLATE ?></p>
+	</div></div>
+	<div class="panel pull-left"><div class="panel-body">
+		<h2><?php echo $this->translate('WebAPI request example') // TRANSLATE ?></h2>
+		<h3><?php echo $this->translate('Request example') // TRANSLATE ?></h3>
+		<div class="source-panel highlighted-source-panel"><?php echo highlight_string("<?php\n\$client = new \WebAPI\Http\Client(
+	'http://localhost:10081/ZendServer/Api/applicationDeploy',
+	array('baseUrl' => 'http://<default-server>/test', 'defaultServer' => 'TRUE'));
+\$client->
+\$response = \$client->send()->getBody();", true) ?></div>
+		<h3><?php echo $this->translate('Example response') // TRANSLATE ?></h3>
+		<div id="tasks_complete-output-panel" class="source-panel"><code><?php echo nl2br(str_replace(' ','&nbsp',htmlentities(
+<<<TASKSCOMPLETE
+<?xml version="1.0" encoding="UTF-8"?>
+<zendServerAPIResponse xmlns="http://www.zend.com/server/api/1.0">
+ <requestData>
+   <apiKeyName>angel.eyes</apiKeyName>
+   <method>tasksComplete</method>
+ </requestData>
+ <responseData>
+   <tasksComplete>false</tasksComplete>
+   <tasksPerServer>
+     <serverComplete>
+       <serverId>0</serverId>
+       <complete>false</complete>
+     </serverComplete>
+   </tasksPerServer>
+ </responseData>
+</zendServerAPIResponse>
+TASKSCOMPLETE
+))) ?>
+		</code></div>
+		<h3><?php echo $this->translate('tasksComplete in the wild') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('tasksComplete in and of itself is not that interesting. However, coupled with other actions such as restartPhp or other actions, it can be used for implementing a responsive interface.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Other pages in the Advanced Workflows part of this application will provide examples for using tasksComplete in a more functional way.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Note that currently you may not create your own Zend Server Tasks and can only use the existing tasks provided by Zend Server.') // TRANSLATE ?></p>
+	</div></div>
+</div>

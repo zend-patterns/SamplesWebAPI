@@ -84,22 +84,22 @@
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Advanced', 'action' => 'tasksPolling')) ?>"><?php echo $this->translate('Polling for completion') // TRANSLATE ?></a>
 	            		<div class="pull-right">
-	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
-	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_configurationstoredirectives_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'tasksPolling')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_taskscomplete_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
 	            		</div>
             		</li>
             		<li class="list-group-item">
-            			<a href=""><?php echo $this->translate('Deploy an Application') // TRANSLATE ?></a>
+            			<a href="<?php echo $this->url('application/default', array('controller' => 'Advanced', 'action' => 'DeployApplication')) ?>"><?php echo $this->translate('Deploy an Application') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
-	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_vhostadd_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'DeployApplication')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_applicationdeploy_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
             		<li class="list-group-item">
-            			<a class="" href=""><?php echo $this->translate('Bootstrap Zend Server') // TRANSLATE ?></a>
+            			<a class="" href=""><?php echo $this->translate('Change PHP Directive') // TRANSLATE ?></a>
             			<div class="pull-right">
 	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
-	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_bootstrapsingleserver_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
+	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_configurationstoredirectives_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
             	</ul>

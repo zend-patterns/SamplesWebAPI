@@ -17,8 +17,12 @@ use Zend\Uri\Http;
 
 class AdvancedController extends AbstractActionController
 {
+	public function deployApplicationAction() {
+		return array();
+	}
+	
 	public function tasksPollingAction() {
-		
+		return array();
 	}
 	
 	public function indexAction()

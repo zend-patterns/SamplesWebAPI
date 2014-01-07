@@ -155,6 +155,17 @@ return array(
 	            	'examples/logsReadLines.php'
 	            )
 	        ),
-        )
+        ),
+        'Advanced' => array(
+        	'tasksPolling' => array(
+	        	'classes' => array(
+            		'WebAPI\Http\Client',
+            		'WebAPI\SignatureGenerator',
+	            ),
+	            'public' => array(
+	            	'examples/tasksPolling.php'
+	            )
+	        ),
+        ),
     ),
 );
