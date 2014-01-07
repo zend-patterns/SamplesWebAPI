@@ -188,7 +188,7 @@ return array(
             		'WebAPI\SignatureGenerator',
 	            ),
 	            'public' => array(
-	            	'examples/tasksPolling.php'
+	            	'examples/tasksComplete.php'
 	            )
 	        ),
         ),
