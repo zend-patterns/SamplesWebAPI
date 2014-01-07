@@ -74,6 +74,13 @@ p.description {
 	height: 478px;
 }
 
+.navbar-brand {
+	font-size: 16px;
+}
+.navbar-brand img {
+	vertical-align: -4px
+}
+
 footer {
 	clear: both;
 }

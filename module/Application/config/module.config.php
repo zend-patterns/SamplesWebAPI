@@ -8,6 +8,18 @@
  */
 
 return array(
+	'navigation' => array(
+		'default' => array(
+			'home' => array(
+				'label' => 'Home',
+				'route' => 'home',
+			),
+			'sdk' => array(
+				'label' => 'WebAPI SDK',
+				'route' => 'sdk',
+			),
+		)
+	),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -17,6 +29,16 @@ return array(
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
                         'action'     => 'index',
+                    ),
+                ),
+            ),
+            'sdk' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/sdk',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'sdk',
                     ),
                 ),
             ),
@@ -74,6 +96,9 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
+        'factories' => array(
+	        'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+        )
     ),
     'translator' => array(
         'locale' => 'en_US',

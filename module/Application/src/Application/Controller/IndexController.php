@@ -16,6 +16,10 @@ use WebAPI\KeyManager;
 
 class IndexController extends AbstractActionController
 {
+    public function sdkAction()
+    {
+        return new ViewModel(array());
+    }
     public function indexAction()
     {
         return new ViewModel(array());
