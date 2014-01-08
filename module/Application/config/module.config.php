@@ -15,7 +15,7 @@ return array(
 				'route' => 'home',
 			),
 			'sdk' => array(
-				'label' => 'WebAPI SDK',
+				'label' => 'Web API Connector',
 				'route' => 'sdk',
 			),
 		)
