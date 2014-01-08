@@ -26,6 +26,8 @@
 	</div></div>
 	<div class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('Web API request example') // TRANSLATE ?></h2>
+		<h3><?php echo $this->translate('Important notice!') // TRANSLATE ?></h3>
+		<p><?php echo $this->translate('The applicationDeploy Web API action restarts your webserver as part of the deployment process. If you implement polling, bear in mind it will have to be implemented out of the webserver\'s bounds so that it survives and continues past the webserver\'s restart.') // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('Request example') // TRANSLATE ?></h3>
 		<div class="source-panel highlighted-source-panel"><?php echo highlight_string("<?php\n\$client = new \WebAPI\Http\Client(
 	'http://localhost:10081/ZendServer/Api/applicationDeploy',
@@ -34,7 +36,7 @@
 \$client->setMethod('POST');
 \$response = \$client->send()->getBody();", true) ?></div>
 		<h3><?php echo $this->translate('Example response') // TRANSLATE ?></h3>
-		<div id="tasks_complete-output-panel" class="source-panel"><code><?php echo nl2br(str_replace(' ','&nbsp',htmlentities(
+		<div id="application_deploy-output-panel" class="source-panel"><code><?php echo nl2br(str_replace(' ','&nbsp',htmlentities(
 <<<DEPLOYAPP
 <?xml version="1.0" encoding="UTF-8"?>
 <zendServerAPIResponse xmlns="http://www.zend.com/server/api/1.2"> 
