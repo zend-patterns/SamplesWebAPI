@@ -2,7 +2,6 @@
 use WebAPI\Http\Client;
 use Zend\Http\Request;
 use Zend\Json\Json;
-use \igorw as igorw;
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
@@ -15,6 +14,8 @@ require 'vendor/json_lint.php';
 require 'vendor/get_in.php';
 require 'module/Application/src/WebAPI/SignatureGenerator.php';
 require 'module/Application/src/WebAPI/Http/Client.php';
+
+set_time_limit(240);
 
 $name = isset($_GET['name']) ? $_GET['name'] : '';
 $key = isset($_GET['key']) ? $_GET['key'] : '';
@@ -92,26 +93,30 @@ if (!$appId) {
 ?>
 <h2>Start Polling on /ZendServer/Api/applicationGetStatus</h2>
 <?php 
+$pollingClient = new Client(
+		'http://localhost:10081/ZendServer/Api/applicationGetStatus',
+		array(
+				'key' => $key,
+				'keyName' => $name,
+				'output' => 'json',
+				'version' => $version,
+		));
+$pollingClient->getRequest()->getQuery()->fromArray(array(
+	'applications' => array($appId)
+));
+
+
 $continue = true;
 $i = 1;
-while ($continue): ?>
-<h3>Response for request <?php echo $i ?></h3>
-<?php
-	$pollingClient = new Client(
-			'http://localhost:10081/ZendServer/Api/applicationGetStatus',
-			array(
-					'key' => $key,
-					'keyName' => $name,
-					'output' => 'json',
-					'version' => $version,
-			));
-	$pollingClient->getRequest()->getQuery()->fromArray(array(
-		'applications' => array($appId)
-	));
+
+while ($continue) {
+	echo "<h3>Response for request $i</h3>";
+
 	$pollingClient->send();
 	$response = $pollingClient->getResponse()->getBody();
 	if ($pollingClient->getResponse()->isOk()) {
 		$responseDecoded = Json::decode($response, Json::TYPE_ARRAY); /* @var $responseDecoded stdClass */
+
 		$appInfo = current(\igorw\get_in($responseDecoded, ['responseData', 'applicationsList']));
 		$status = \igorw\get_in($appInfo, ['status']);
 
@@ -121,11 +126,12 @@ while ($continue): ?>
 			$continue = false;
 		}
 	
+	} else {
+		$continue = false;
 	}
 
-?>
+	$displayResponse = htmlentities(indent($response));
+	echo "<pre><code>$displayResponse</code></pre>";
 
-<pre><code><?php echo htmlentities(indent($response)) ?></code></pre>
-
-<?php $i++; flush(); sleep(1); ?>
-<?php endwhile ?>
+	$i++; flush(); sleep(1);
+}
