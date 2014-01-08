@@ -114,7 +114,8 @@ while ($continue) {
 
 	$pollingClient->send();
 	$response = $pollingClient->getResponse()->getBody();
-	if ($pollingClient->getResponse()->isOk()) {
+	/// accept 200 or 202
+	if ($pollingClient->getResponse()->isOk() || $pollingClient->getResponse()->isInformational()) {
 		$responseDecoded = Json::decode($response, Json::TYPE_ARRAY); /* @var $responseDecoded stdClass */
 
 		$appInfo = current(\igorw\get_in($responseDecoded, ['responseData', 'applicationsList']));
@@ -122,7 +123,7 @@ while ($continue) {
 
 		echo "<h4>Status is $status</h4>".PHP_EOL;
 		
-		if (! in_array(strtolower($status), array('staging', 'activating'))) {
+		if (! in_array($status, array('staging', 'activating'))) {
 			$continue = false;
 		}
 	
@@ -135,3 +136,22 @@ while ($continue) {
 
 	$i++; flush(); sleep(1);
 }
+
+echo "<h2>Cleaning up the application</h2>",PHP_EOL;
+/// clean up the deployed application
+$client = new Client(
+		'http://localhost:10081/ZendServer/Api/applicationRemove',
+		array(
+				'key' => $key,
+				'keyName' => $name,
+				'output' => $output,
+				'version' => $version,
+		));
+
+$client->setMethod('POST');
+
+$client->getRequest()->getPost()->fromArray(array(
+		'appId' => $appId,
+));
+
+$client->send();
