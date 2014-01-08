@@ -1,7 +1,7 @@
 <div class="samples-panel-group panel-group">
 	<div id="siganture-panel" class="panel pull-left"><div class="panel-body">
-		<h2><?php echo $this->translate('WebAPI error output') // TRANSLATE ?></h2>
-		<p><?php echo $this->translate('The WebAPI returns and handles errors in a uniform and standardized way. Whenever an error is detected in execution, be it due to failed input filtering or a concrete logic error in the application, the same error payload is returned. This error display is output-sensitive so that you will get the format you expected when you sent the request.') // TRANSLATE ?></p>
+		<h2><?php echo $this->translate('Web API error output') // TRANSLATE ?></h2>
+		<p><?php echo $this->translate('The Web API returns and handles errors in a uniform and standardized way. Whenever an error is detected in execution, be it due to failed input filtering or a concrete logic error in the application, the same error payload is returned. This error display is output-sensitive so that you will get the format you expected when you sent the request.') // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('Error output template') // TRANSLATE ?></h3>
 		<p><?php echo $this->translate('The usual &lt;responseData&gt; element is replaced by an &lt;errorData&gt; element which contains two elements of its own.') // TRANSLATE ?></p>
 		<p><?php echo $this->translate('The &lt;errorCode&gt; element will contain a camel-cased word that gives a generalized description of the problem.') // TRANSLATE ?></p>
@@ -26,19 +26,19 @@
 		<p><?php echo $this->translate('A few errors you\'re may encounter when working with Zend Server and a few possible solutions:') // TRANSLATE ?></p>
 		<ul>
 			<li><code><?php echo $this->translate('malformedRequest') // TRANSLATE ?></code>
-			<p><?php echo $this->translate('WebAPI request headers: You forgot your X-Zend-Signature header silly!') // TRANSLATE ?><br />
+			<p><?php echo $this->translate('Web API request headers: You forgot your X-Zend-Signature header silly!') // TRANSLATE ?><br />
 			<a href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'Signature')) ?>"><?php echo $this->translate('Check out our Signature example') // TRANSLATE ?></a></p></li>
 			<li><code><?php echo $this->translate('authError') // TRANSLATE ?></code>
-			<p><?php echo $this->translate('WebAPI signature authentication error: Did you sign using the right parameters? For the correct URL? Did you specify a port with your host? Is your Date header formatted correctly? Did you use the right key name? Are you sure about lunch?') // TRANSLATE ?><br />
+			<p><?php echo $this->translate('Web API signature authentication error: Did you sign using the right parameters? For the correct URL? Did you specify a port with your host? Is your Date header formatted correctly? Did you use the right key name? Are you sure about lunch?') // TRANSLATE ?><br />
 			<a href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'Signature')) ?>"><?php echo $this->translate('Check out our Signature example') // TRANSLATE ?></a></p></li>
 			<li><code><?php echo $this->translate('timeSkewError') // TRANSLATE ?></code>
 			<p><?php echo $this->translate('Your X-Zend-Signature header is old or out of sync with the current time on the server. Client and Server clocks should be synched - at least enough for producing a GMT timestamp.') // TRANSLATE ?></p></li>
 			<li><code><?php echo $this->translate('insufficientAccessLevel') // TRANSLATE ?></code>
-			<p><?php echo $this->translate('The WebAPI action you requested is not allowed to the key you provided. Note that each WebAPI key is bound to a concrete user credential and inherits that user\'s permissions and luck allowing, good looks. Try again with an elevated key. Who knows? you might get lucky!') // TRANSLATE ?></p></li>
+			<p><?php echo $this->translate('The Web API action you requested is not allowed to the key you provided. Note that each Web API key is bound to a concrete user credential and inherits that user\'s permissions and luck allowing, good looks. Try again with an elevated key. Who knows? you might get lucky!') // TRANSLATE ?></p></li>
 			<li><code><?php echo $this->translate('outputTypesLimited') // TRANSLATE ?></code>
-			<p><?php echo $this->translate('The WebAPI action you requested has had its output modes limited so that it may only use a specific output mode - namely, not the one you requested. Try the other one.') // TRANSLATE ?></p></li>
+			<p><?php echo $this->translate('The Web API action you requested has had its output modes limited so that it may only use a specific output mode - namely, not the one you requested. Try the other one.') // TRANSLATE ?></p></li>
 			<li><code><?php echo $this->translate('serverNotReady') // TRANSLATE ?></code>
-			<p><?php echo $this->translate('Most WebAPI actions may only be used on a server that\'s been bootstrapped (or launched). There are a few exceptions to this but this action is not one of them. Bootstrap your server and try again.') // TRANSLATE ?></p></li>
+			<p><?php echo $this->translate('Most Web API actions may only be used on a server that\'s been bootstrapped (or launched). There are a few exceptions to this but this action is not one of them. Bootstrap your server and try again.') // TRANSLATE ?></p></li>
 		</ul>
 	</div></div>
 </div>

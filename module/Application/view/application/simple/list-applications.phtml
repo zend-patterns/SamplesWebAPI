@@ -5,7 +5,7 @@
 		<p><?php echo $this->translate('The most basic activity for working with deployed applications is the ability to query Zend Server about its deployed applications.') // TRANSLATE ?></p>
 	
 		<h3><?php echo $this->translate('applicationGetStatus: Input Parameters') // TRANSLATE ?></h3>
-		<p><?php echo $this->translate('The WebAPI action applicationGetStatus returns a list of applications according to a set of application IDs. This action can be used to retrieve a full list of applications or just information about a few specific applications.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('The Web API action applicationGetStatus returns a list of applications according to a set of application IDs. This action can be used to retrieve a full list of applications or just information about a few specific applications.') // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('applicationGetStatus: Output Structure') // TRANSLATE ?></h3>
 		<p><?php echo $this->translate('The expected output is made out of a list of elements of the type applicationInfo. This element is composed of a few element groups:') // TRANSLATE ?></p>
 		<ul>
@@ -22,7 +22,7 @@
 		</ul>
 	</div></div>
 	<div class="panel pull-left"><div class="panel-body">
-		<h2><?php echo $this->translate('WebAPI request example') // TRANSLATE ?></h2>
+		<h2><?php echo $this->translate('Web API request example') // TRANSLATE ?></h2>
 		<h3><?php echo $this->translate('Request example') // TRANSLATE ?></h3>
 		<div class="source-panel highlighted-source-panel"><?php echo highlight_string("<?php\n\$client = new \WebAPI\Http\Client(
 	'http://localhost:10081/ZendServer/Api/applicationGetStatus',
@@ -43,8 +43,8 @@
       <applicationInfo>
         <id>7</id>
         <baseUrl>http://&lt;default-server&gt;/samples</baseUrl>
-        <appName>SamplesWebAPI</appName>
-        <userAppName>SamplesWebAPI</userAppName>
+        <appName>WebAPI Samples</appName>
+        <userAppName>WebAPI Samples</userAppName>
         <installedLocation>/usr/local/zend/var/apps/http/__default__/0/samples/1.0.0_20</installedLocation>
         <status>deployed</status>
         <isRollbackable>true</isRollbackable>

@@ -1,9 +1,9 @@
 <div class="samples-panel-group panel-group">
 	<div class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('Polling Zend Server Tasks') // TRANSLATE ?></h2>
-		<p><?php echo sprintf($this->translate('Zend Server\'s execution of some actions is not straightforward and immediate. Some WebAPI actions, particularly those that change configuration or add new applications take too long to have a client wait for a complete response. Other actions can take an indefinite amount of time because they rely on external services.')) // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('Zend Server\'s execution of some actions is not straightforward and immediate. Some Web API actions, particularly those that change configuration or add new applications take too long to have a client wait for a complete response. Other actions can take an indefinite amount of time because they rely on external services.')) // TRANSLATE ?></p>
 		<p><?php echo $this->translate('These actions are tracked internally as Zend Server Tasks and can also be tracked by the client.') // TRANSLATE ?></p>
-		<p><?php echo $this->translate('Tasks are tracked using a WebAPI action called tasksComplete, which returns true when all tasks are completed.') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Tasks are tracked using a Web API action called tasksComplete, which returns true when all tasks are completed.') // TRANSLATE ?></p>
 		<p><?php echo $this->translate('Note that you can call consecutive actions without polling - those actions are stored in a queue and will be processed in-order.') // TRANSLATE ?></p>
 	
 		<h3><?php echo $this->translate('tasksComplete: Input Parameters') // TRANSLATE ?></h3>
@@ -24,7 +24,7 @@
 		</ul>
 	</div></div>
 	<div class="panel pull-left"><div class="panel-body">
-		<h2><?php echo $this->translate('WebAPI request example') // TRANSLATE ?></h2>
+		<h2><?php echo $this->translate('Web API request example') // TRANSLATE ?></h2>
 		<h3><?php echo $this->translate('Request example') // TRANSLATE ?></h3>
 		<div class="source-panel highlighted-source-panel"><?php echo highlight_string("<?php\n\$client = new \WebAPI\Http\Client(
 	'http://localhost:10081/ZendServer/Api/tasksComplete',

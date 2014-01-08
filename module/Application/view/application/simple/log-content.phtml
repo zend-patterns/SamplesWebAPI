@@ -1,7 +1,7 @@
 <div class="samples-panel-group panel-group">
 	<div class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('Get Log File Content') // TRANSLATE ?></h2>
-		<p><?php echo sprintf($this->translate('Monitor events are not the only way to find out about problems in Zend Server. PHP error and other logs are all available for retrieval through the Zend Server WebAPI. The logsReadLines method allows you to retrieve a set number of records from the log\'s tail and also filter the information to narrow it down.')) // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('Monitor events are not the only way to find out about problems in Zend Server. PHP error and other logs are all available for retrieval through the Zend Server Web API. The logsReadLines method allows you to retrieve a set number of records from the log\'s tail and also filter the information to narrow it down.')) // TRANSLATE ?></p>
 		<p><?php echo $this->translate('Several log files are available to retrieve from, the one most immediately interesting is the PHP error log file which will collect notices, warnings and errors triggered by PHP on during execution.') // TRANSLATE ?></p>
 	
 		<h3><?php echo $this->translate('logsReadLines: Input Parameters') // TRANSLATE ?></h3>
@@ -23,7 +23,7 @@
 		</ul>
 	</div></div>
 	<div class="panel pull-left"><div class="panel-body">
-		<h2><?php echo $this->translate('WebAPI request example') // TRANSLATE ?></h2>
+		<h2><?php echo $this->translate('Web API request example') // TRANSLATE ?></h2>
 		<h3><?php echo $this->translate('Request example') // TRANSLATE ?></h3>
 		<div class="source-panel highlighted-source-panel"><?php echo highlight_string("<?php\n\$client = new \WebAPI\Http\Client(
 	'http://localhost:10081/ZendServer/Api/logsReadLines',

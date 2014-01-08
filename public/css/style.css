@@ -81,6 +81,10 @@ p.description {
 	vertical-align: -4px
 }
 
+.panel-body p {
+	text-align: justify;
+}
+
 footer {
 	clear: both;
 }
