@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Important note about applicationDeploy
+ * The applicationDeploy Web API action restarts your webserver as part of the deployment process.
+ * This means that this script will be terminated "out of the blue" and for no apparent reason.
+ * 
+ * This script does still give you a basic polling example, it just does not live out its intended use-case.
+ * A better implementation would incorporate Javascript and fault tolerant Ajax calls to an API which may or may not be answering.
+ */
+
 use WebAPI\Http\Client;
 use Zend\Http\Request;
 use Zend\Json\Json;
@@ -136,22 +146,3 @@ while ($continue) {
 
 	$i++; flush(); sleep(1);
 }
-
-echo "<h2>Cleaning up the application</h2>",PHP_EOL;
-/// clean up the deployed application
-$client = new Client(
-		'http://localhost:10081/ZendServer/Api/applicationRemove',
-		array(
-				'key' => $key,
-				'keyName' => $name,
-				'output' => $output,
-				'version' => $version,
-		));
-
-$client->setMethod('POST');
-
-$client->getRequest()->getPost()->fromArray(array(
-		'appId' => $appId,
-));
-
-$client->send();
