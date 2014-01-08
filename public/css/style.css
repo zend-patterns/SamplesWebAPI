@@ -85,6 +85,10 @@ p.description {
 	text-align: justify;
 }
 
+.sdk-descriptions .panel .panel-body {
+	height: 190px;
+}
+
 footer {
 	clear: both;
 }
