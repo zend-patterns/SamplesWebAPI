@@ -1,8 +1,8 @@
 <div class="samples-panel-group panel-group">
 	<div class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('Deploying an application zpk') // TRANSLATE ?></h2>
-		<p><?php echo sprintf($this->translate('Zend Server\'s UI allows the user to easily deploy an application %szpk package%s using a wizard. The UI wizard does not lend itself to easily integrate with external services, which is why the same functionality is available as a WebAPI action.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#application_package.htm">','</a>') // TRANSLATE ?></p>
-		<p><?php echo $this->translate('The WebAPI action allows you to upload the application package, pass its relevant meta information and add any user params needed.') // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('Zend Server\'s UI allows the user to easily deploy an application %szpk package%s using a wizard. The UI wizard does not lend itself to easily integrate with external services, which is why the same functionality is available as a Web API action.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#application_package.htm">','</a>') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('The Web API action allows you to upload the application package, pass its relevant meta information and add any user params needed.') // TRANSLATE ?></p>
 		<p><?php echo $this->translate('When the response is returned the application has begun its deployment process.') // TRANSLATE ?></p>
 	
 		<h3><?php echo $this->translate('applicationDeploy: Input Parameters') // TRANSLATE ?></h3>
@@ -21,11 +21,11 @@
 		<h3><?php echo $this->translate('applicationDeploy Practices') // TRANSLATE ?></h3>
 		<p><?php echo $this->translate('Application deployment automation is usually involved in the organization\'s software life cycle or continuous delivery system. The deployment step could be the final release to production or part of the creation of a standard developer environment.') // TRANSLATE ?></p>
 		<p><?php echo $this->translate('Once the applicationDeploy command has been issued, it will take Zend Server some time to complete this operation. Note the status "staging" in our example to the right. The amount of time depends on hook scripts\' execution, the size of the package and the platform running Zend Server.') // TRANSLATE ?></p>
-		<p><?php echo sprintf($this->translate('To track its progress you may poll Zend Server using the WebAPI action %sapplicationGetStatus%s. Using this action, you can poll a specific application\'s status and wait for it to arrive at some stable state - be it successful completion or an error in deployment.'),'<a href="http://localhost/samples/application/Simple/ListApplications">','</a>') // TRANSLATE ?></p>
+		<p><?php echo $this->translate('Note that baseUrl values are unique - you cannot have two different applications on the same baseUrl.') // TRANSLATE ?></p>
 		<p><?php echo $this->translate('Also note that the deployment operation and its outcome will be registered in the Audit Trail, allowing you to revisit the deployment later. Should a deployment fail, the UI will issue a "Deployment Failed" notification.') // TRANSLATE ?></p>
 	</div></div>
 	<div class="panel pull-left"><div class="panel-body">
-		<h2><?php echo $this->translate('WebAPI request example') // TRANSLATE ?></h2>
+		<h2><?php echo $this->translate('Web API request example') // TRANSLATE ?></h2>
 		<h3><?php echo $this->translate('Request example') // TRANSLATE ?></h3>
 		<div class="source-panel highlighted-source-panel"><?php echo highlight_string("<?php\n\$client = new \WebAPI\Http\Client(
 	'http://localhost:10081/ZendServer/Api/applicationDeploy',
@@ -73,5 +73,7 @@
 DEPLOYAPP
 ))) ?>
 		</code></div>
+		<h3><?php echo $this->translate('After deployment...') // TRANSLATE ?></h3>
+		<p><?php echo sprintf($this->translate('Track deployment progress by polling Zend Server using the Web API action %sapplicationGetStatus%s. This action allows you to poll a specific application\'s status and wait for it to arrive at some stable state - be it successful completion or an error in deployment.'),'<a href="http://localhost/samples/application/Simple/ListApplications">','</a>') // TRANSLATE ?></p>
 	</div></div>
 </div>
