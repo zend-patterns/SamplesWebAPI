@@ -11,3 +11,13 @@ The samples break down into three sections:
 * Advanced workflows - Web API actions which require more than one step to actually be used effectively.
 
 The samples package also contains information about another Zend project - Zend Server Web API Module. This module can be dropped into any ZF2 application and be used to make integration even easier.
+
+Installation
+============
+This repository contains a deployment.xml file necessary to create a zpk file for deployment using Zend Server's Deployment feature. It can also just be copy-pasted into an existing directory on a webhost but was not tested for this scenario.
+
+Note that this application requires Zend Server as it relies on the ZF2 library package and the Deployment feature to locate it.
+
+Examples
+========
+The example scripts included in this package will actually connect to your server and retrieve information from it. We purposefully avoided storing any credentials as part of the implementation of this package and you will have to supply a Web API key and name pair for any example script you use.
