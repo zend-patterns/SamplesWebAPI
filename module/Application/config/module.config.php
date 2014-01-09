@@ -200,6 +200,15 @@ return array(
 	            	'examples/deployApplication.php'
 	            )
 	        ),
+        	'ChangeDirective' => array(
+	        	'classes' => array(
+            		'WebAPI\Http\Client',
+            		'WebAPI\SignatureGenerator',
+	            ),
+	            'public' => array(
+	            	'examples/changeDirective.php'
+	            )
+	        ),
         ),
     ),
 );

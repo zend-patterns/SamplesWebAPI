@@ -97,9 +97,9 @@
             			</div>
             		</li>
             		<li class="list-group-item">
-            			<a class="" href=""><?php echo $this->translate('Change PHP Directive') // TRANSLATE ?></a>
+            			<a class="" href="<?php echo $this->url('application/default', array('controller' => 'Advanced', 'action' => 'ChangeDirective')) ?>"><?php echo $this->translate('Change PHP Directive') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href=""><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'ChangeDirective')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_configurationstoredirectives_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>

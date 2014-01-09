@@ -17,6 +17,10 @@ use Zend\Uri\Http;
 
 class AdvancedController extends AbstractActionController
 {
+	public function changeDirectiveAction() {
+		return array();
+	}
+	
 	public function deployApplicationAction() {
 		return array();
 	}
