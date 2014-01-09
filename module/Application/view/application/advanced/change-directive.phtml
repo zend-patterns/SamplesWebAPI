@@ -8,12 +8,12 @@
 		<p><?php echo sprintf($this->translate('This action accepts a single mandatory parameter "directives" which is an associative array of directive names and their values.')) // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('configurationStoreDirectives: Output Structure') // TRANSLATE ?></h3>
 		<p><?php echo sprintf($this->translate('The action returns a list of %sdirective elements%s which contains all current information related to the directives that were changed.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#directive.htm">','</a>') // TRANSLATE ?></p>
-		<p><?php echo sprintf($this->translate('The directive element contains information about the directive\'s association, the file it was found in and its previous value.')) // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('The directive element contains information about the directive\'s association, some meta information and its previous value.')) // TRANSLATE ?></p>
 		<h3><?php echo $this->translate('configurationStoreDirectives Notes') // TRANSLATE ?></h3>
 		<p><?php echo $this->translate('Any directive to be modified in the system can (and should) be modified through ConfigurationStoreDirectives.') // TRANSLATE ?></p>
 		<p><?php echo sprintf($this->translate('ConfigurationStoreDirectives is an asynchronous action which should be polled using the tasksComplete Web API action. Once complete, Zend Server will have to be restarted for the new settings to actually be applied to runtime. Some directives, particularly UI directives will not require a restart and are an exception to this rule. In any case, you may check if anything requires a restart using the %sdaemonProbe Web API action%s'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_daemonprobe_method.htm">', '</a>') // TRANSLATE ?></p>
-		<p><?php echo sprintf($this->translate('The validation performed in ConfigurationStoreDirective is identical to the one provided by the %sConfigurationValidateDirectives Web API action%s.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_configurationvalidatedirectives_method.htm">','</a>') // TRANSLATE ?></p>
-		<p><?php echo sprintf($this->translate('Note that any configuration directive in the system can be modified by ConfigurationStoreDirective, this incldues daemons/services, PHP and the UI.')) // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('The validation performed in ConfigurationStoreDirectives is identical to the one provided by the %sConfigurationValidateDirectives Web API action%s.'), '<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_configurationvalidatedirectives_method.htm">','</a>') // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('Note that any configuration directive in the system can be modified by ConfigurationStoreDirectives, this incldues daemons/services, PHP and the UI.')) // TRANSLATE ?></p>
 	</div></div>
 	<div class="panel pull-left"><div class="panel-body">
 		<h2><?php echo $this->translate('Web API request example') // TRANSLATE ?></h2>
@@ -29,20 +29,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zendServerAPIResponse xmlns="http://www.zend.com/server/api/1.3">
  <requestData>
-  <apiKeyName>angel.eyes</apiKeyName>
+  <apiKeyName>admin</apiKeyName>
   <method>configurationStoreDirectives</method>
  </requestData>
  <responseData>
   <directives>
-   <directive>
-    <name>bcmath.scale</name>
-    <extension>bcmath</extension>
-    <section></section>
-    <type>string</type>
-    <fileValue><![CDATA[0]]></fileValue>
-    <defaultValue><![CDATA[0]]><</defaultValue>
-   </directive>
-  </directives>
+      <directive>
+        <name>bcmath.scale</name>
+        <context>Extension</context>
+        <contextName>bcmath</contextName>
+        <section></section>
+        <fileValue>0</fileValue>
+        <defaultValue></defaultValue>
+        <previousValue></previousValue>
+        <description>Number of digits after decimal point for bcmath functions</description>
+        <type>int</type>
+        <units>digits</units>
+        <listValues></listValues>
+      </directive>
+    </directives>
  </responseData>
 </zendServerAPIResponse>
 STOREDIRECTIVE
