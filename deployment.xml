@@ -4,6 +4,7 @@
     <version>
         <release>1.0.0</release>
     </version>
+    <eula>LICENSE.txt</eula>
     <appdir>data</appdir>
     <docroot>data/public</docroot>
     <dependencies>
