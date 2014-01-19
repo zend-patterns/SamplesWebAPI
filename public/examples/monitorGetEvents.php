@@ -9,8 +9,11 @@ chdir(dirname(dirname(__DIR__)));
 
 // Setup autoloading
 require 'init_autoloader.php';
+require 'vendor/json_lint.php';
 require 'module/Application/src/WebAPI/SignatureGenerator.php';
 require 'module/Application/src/WebAPI/Http/Client.php';
+
+$requestEnvironment = new \Zend\Http\PhpEnvironment\Request();
 
 $name = isset($_GET['name']) ? $_GET['name'] : '';
 $key = isset($_GET['key']) ? $_GET['key'] : '';
@@ -20,7 +23,7 @@ $version = isset($_GET['version']) ? $_GET['version'] : '1.7';
 
 $issueId = isset($_GET['issueId']) ? $_GET['issueId'] : '';
 
-if (! $issueId) {
+if ((! $issueId) && ($key)) {
 	/// if no issueId was provided, attempt to find one on our own
 	$client = new Client(
 			'http://localhost:10081/ZendServer/Api/monitorGetIssuesByPredefinedFilter?filterId=All%20Issues&limit=1',
@@ -70,16 +73,19 @@ $config = array(
 		'escape-cdata' => true,
 		'wrap'           => 400);
 
-
-$tidy = new tidy;
-$tidy->parseString($response, $config, 'utf8');
-$tidy->cleanRepair();
+if ($output == 'xml') {
+	$tidy = new tidy;
+	$tidy->parseString($response, $config, 'utf8');
+	$tidy->cleanRepair();
+} else {
+	$tidy = indent($response);
+}
 
 $request = Request::fromString($client->getLastRawRequest());
 ?>
 <h2>Example output</h2>
 <h3>Synopsis:</h3>
-<p>http://localhost/samples/examples/issueId.php?key=&lt;key&gt;&amp;name=&lt;key-name&gt;[&amp;version=&lt;version-number&gt;][&amp;output=&lt;json|xml&gt;][&amp;issueId=&lt;issue Id to view&gt;]</p>
+<p><?php echo preg_replace('#(\?.+)#', '', $requestEnvironment->getUriString()) ?>?key=&lt;key&gt;&amp;name=&lt;key-name&gt;[&amp;version=&lt;version-number&gt;][&amp;output=&lt;json|xml&gt;][&amp;issueId=&lt;issue Id to view&gt;]</p>
 <h3>WebAPI call parameters:</h3>
 <pre><code><?php echo htmlentities(print_r($_GET,true)) ?></code></pre>
 <h3>URI called:</h3>

@@ -27,6 +27,8 @@ require 'module/Application/src/WebAPI/Http/Client.php';
 
 set_time_limit(240);
 
+$requestEnvironment = new \Zend\Http\PhpEnvironment\Request();
+
 $name = isset($_GET['name']) ? $_GET['name'] : '';
 $key = isset($_GET['key']) ? $_GET['key'] : '';
 
@@ -61,16 +63,20 @@ $config = array(
 		'wrap'           => 400);
 
 
-$tidy = new tidy;
-$tidy->parseString($response, $config, 'utf8');
-$tidy->cleanRepair();
+if ($output == 'xml') {
+	$tidy = new tidy;
+	$tidy->parseString($response, $config, 'utf8');
+	$tidy->cleanRepair();
+} else {
+	$tidy = indent($response);
+}
 
 $request = Request::fromString($client->getLastRawRequest());
 
 ?>
 <h2>Example output</h2>
 <h3>Synopsis:</h3>
-<p>http://localhost/samples/examples/applicationDeploy.php?key=&lt;key&gt;&amp;name=&lt;key-name&gt;[&amp;version=&lt;version-number&gt;][&amp;output=&lt;json|xml&gt;]</p>
+<p><?php echo preg_replace('#(\?.+)#', '', $requestEnvironment->getUriString()) ?>?key=&lt;key&gt;&amp;name=&lt;key-name&gt;[&amp;version=&lt;version-number&gt;][&amp;output=&lt;json|xml&gt;]</p>
 <h3>WebAPI call parameters:</h3>
 <pre><code><?php echo htmlentities(print_r($_GET,true)) ?></code></pre>
 <h3>URI called:</h3>
