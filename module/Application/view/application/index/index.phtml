@@ -18,14 +18,15 @@
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'Signature')) ?>"><?php echo $this->translate('Signatures') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Basics', 'topic' => 'Signature')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Basics', 'topic' => 'Signature')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#signing_api_requests.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Basics', 'action' => 'VersionNegotiation')) ?>"><?php echo $this->translate('Accept header & version') // TRANSLATE ?></a>
 	            		<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Basics', 'topic' => 'VersionNegotiation')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="examples/version.php" target="_blank"><?php echo $this->translate('Example') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Basics', 'topic' => 'VersionNegotiation')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#api_versioning_negotation.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
 	            		</div>
             		</li>
@@ -51,21 +52,24 @@
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Simple', 'action' => 'ListApplications')) ?>"><?php echo $this->translate('List applications') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'ListApplications')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+            				<a href="examples/applicationGetStatus.php" target="_blank"><?php echo $this->translate('Example') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'ListApplications')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_applicationgetstatus_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Simple', 'action' => 'EventInfo')) ?>"><?php echo $this->translate('Event Information') // TRANSLATE ?></a>
 	            		<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'EventInfo')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="examples/monitorGetEvents.php" target="_blank"><?php echo $this->translate('Example') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'EventInfo')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#monitorgetissuesdetails.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
 	            		</div>
             		</li>
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Simple', 'action' => 'LogContent')) ?>"><?php echo $this->translate('Retrieve Log Content') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'LogContent')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="examples/logsReadLines.php" target="_blank"><?php echo $this->translate('Example') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Simple', 'topic' => 'LogContent')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_logsreadlines_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
@@ -85,21 +89,24 @@
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Advanced', 'action' => 'tasksPolling')) ?>"><?php echo $this->translate('Polling for completion') // TRANSLATE ?></a>
 	            		<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'tasksPolling')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="examples/tasksComplete.php" target="_blank"><?php echo $this->translate('Example') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'tasksPolling')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_taskscomplete_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
 	            		</div>
             		</li>
             		<li class="list-group-item">
             			<a href="<?php echo $this->url('application/default', array('controller' => 'Advanced', 'action' => 'DeployApplication')) ?>"><?php echo $this->translate('Deploy an Application') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'DeployApplication')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="examples/deployApplication.php" target="_blank"><?php echo $this->translate('Example') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'DeployApplication')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_applicationdeploy_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
             		<li class="list-group-item">
             			<a class="" href="<?php echo $this->url('application/default', array('controller' => 'Advanced', 'action' => 'ChangeDirective')) ?>"><?php echo $this->translate('Change PHP Directive') // TRANSLATE ?></a>
             			<div class="pull-right">
-	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'ChangeDirective')) ?>"><?php echo $this->translate('Source Code') // TRANSLATE ?></a>
+	            			<a href="examples/changeDirective.php" target="_blank"><?php echo $this->translate('Example') // TRANSLATE ?></a>
+	            			<a href="<?php echo $this->url('application/source', array('workflow' => 'Advanced', 'topic' => 'ChangeDirective')) ?>"><?php echo $this->translate('Source') // TRANSLATE ?></a>
 	            			<a href="http://files.zend.com/help/Zend-Server/zend-server.htm#the_configurationstoredirectives_method.htm" target="_blank"><?php echo $this->translate('doc') // TRANSLATE ?></a>
             			</div>
             		</li>
