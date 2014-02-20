@@ -76,6 +76,6 @@ DEPLOYAPP
 ))) ?>
 		</code></div>
 		<h3><?php echo $this->translate('After deployment...') // TRANSLATE ?></h3>
-		<p><?php echo sprintf($this->translate('Track deployment progress by polling Zend Server using the Web API action %sapplicationGetStatus%s. This action allows you to poll a specific application\'s status and wait for it to arrive at some stable state - be it successful completion or an error in deployment.'),'<a href="http://localhost/samples/application/Simple/ListApplications">','</a>') // TRANSLATE ?></p>
+		<p><?php echo sprintf($this->translate('Track deployment progress by polling Zend Server using the Web API action %sapplicationGetStatus%s. This action allows you to poll a specific application\'s status and wait for it to arrive at some stable state - be it successful completion or an error in deployment.'),"<a href=\"{$this->url('application/default', array('controller' => 'Simple', 'action' => 'ListApplications'))}\">",'</a>') // TRANSLATE ?></p>
 	</div></div>
 </div>
